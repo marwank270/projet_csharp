@@ -282,19 +282,19 @@ namespace Projet_Marwan_Kaouachi
                     break;
                 case 2:
                     Console.Clear();
-                    BEX1();
+                    BEX2();
                     break;
                 case 3:
                     Console.Clear();
-                    BEX1();
+                    BEX3();
                     break;
                 case 4:
                     Console.Clear();
-                    BEX1();
+                    BEX4();
                     break;
                 case 5:
                     Console.Clear();
-                    BEX1();
+                    BEX5();
                     break;
 
                 default:
@@ -322,7 +322,8 @@ namespace Projet_Marwan_Kaouachi
  |_____/_/\_\_|
         Vérifie si un nombre est Premier              
 ");
-            Console.WriteLine("Saisissez un nombre pour vérifier si il est Premier ou non. (Utilisez 0 pour quitter et revenir au menu précédent)");
+            Console.WriteLine($"{cc.infoFlag} (Utilisez 0 pour quitter et revenir au menu précédent)\n");
+            Console.WriteLine("Saisissez un nombre pour vérifier si il est Premier ou non:");
             int nombre;
             do
             {
@@ -358,14 +359,15 @@ namespace Projet_Marwan_Kaouachi
  |_____/_/\_\_____|
        Affiche la liste des nombres Premiers                    
 ");
+            Console.WriteLine($"{cc.infoFlag} (Utilisez 0 dans les deux saisies pour quitter et revenir au menu précédent)\n");
             int mini;
             int maxi;
       
             do
             {
-                Console.WriteLine("Saisissez une borne minimale pour débuter la liste des nombres Premiers : (Utilisez 0 pour quitter et revenir au menu précédent)");
+                Console.WriteLine("Saisissez une borne minimale pour débuter la liste des nombres Premiers : (0 pour quitter)");
                 mini = DemandeNombre();
-                Console.WriteLine("Saisissez une borne maximale pour finir la liste des nombre Premiers : (Utilisez encore 0 pour quitter et revenir au menu précédent)");
+                Console.WriteLine("Saisissez une borne maximale pour finir la liste des nombre Premiers : (Encore 0 pour quitter)");
                 maxi = DemandeNombre();
 
                 if (mini == 0 && maxi == 0)
@@ -411,11 +413,12 @@ namespace Projet_Marwan_Kaouachi
  | |___ /  \ ___) |
  |_____/_/\_\____/ 
        Affiche le nombre premier supérieur            ");
+            Console.WriteLine($"{cc.infoFlag} (Utilisez 0 pour quitter et revenir au menu précédent)\n");
 
             int nombre;
             do
             {
-                Console.WriteLine("\nSaisissez un nombre pour afficher le nombre premier supérieur à celui-ci:");
+                Console.WriteLine("\nSaisissez un nombre pour afficher le nombre Premier supérieur à celui-ci:");
                 nombre = DemandeNombre();
                 int i = nombre;
 
@@ -427,7 +430,7 @@ namespace Projet_Marwan_Kaouachi
                     i++;
                 } while (Premier(i) != true);
 
-                Console.WriteLine($"Le premier nombre premier au dessus de {cc.cyan}{nombre}{cc.end} est {cc.cyan}{i}{cc.end}.\n");
+                Console.WriteLine($"Le premier nombre Premier au dessus de {cc.cyan}{nombre}{cc.end} est {cc.cyan}{i}{cc.end}.\n");
             } while (nombre != 0);
 
             Retour();
@@ -452,6 +455,7 @@ namespace Projet_Marwan_Kaouachi
             {
                 Console.WriteLine("Saisissez un nombre à décomposer en produit de facteurs premiers:");
                 int n = nombre = DemandeNombre();
+                int copy;
 
                 #region Essai_1
                 /*do
@@ -479,7 +483,8 @@ namespace Projet_Marwan_Kaouachi
 
                 } while (nombre != 1);*/
                 #endregion Essai_1
-                do
+                #region Essai_2
+                /*do
                 {
                     while (n % prem == 0)
                     {
@@ -506,8 +511,43 @@ namespace Projet_Marwan_Kaouachi
                         prem += 1;
                     } while (s != true);
 
-                } while (n > 1);
-                
+                } while (n > 1);*/
+                #endregion Essai_2
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  Non fini
+                while (n > 1)
+                {
+                    while (n % prem == 0)
+                    {
+                        n /= prem;
+
+                        Console.WriteLine("facteur trouvé "+ prem);
+                        cpt++;
+
+                        Console.WriteLine(cpt);
+                    }
+                    prem += 1;
+                    //cpt = 1;
+
+                    if (cpt == 1)
+                    {
+                        ligne += prem.ToString();
+                    }
+                    else
+                    {
+                        ligne += prem.ToString() + "^" + cpt;
+                    }
+                    if (n > 1)
+                    {
+                        ligne += " * ";
+                    }
+                    
+
+                    /*do
+                    {
+                        s = Premier(prem + 1);
+                        prem += 1;
+                    } while (s != true);*/
+                }
 
                 Console.WriteLine($"Après décomposition : {cc.cyan}{nombre}{cc.end} = {cc.cyan}{ligne}{cc.end}");
             } while (nombre != 0);
@@ -817,7 +857,8 @@ namespace Projet_Marwan_Kaouachi
         {
             string saisie;
             string[] datum;
-            int n, jour, mois, annee;
+            int n, jour, mois, annee, j, m, a, nextlap = -1;
+            bool newlap = false;
 
             Console.WriteLine(@"
   _______  ___ 
@@ -829,45 +870,212 @@ namespace Projet_Marwan_Kaouachi
 ");
             Console.WriteLine($"\n{cc.infoFlag} Utilisez 0 pour revenir au menu précédent.");
 
-            saisie = Console.ReadLine();
-            datum = saisie.Split(' '); // Je met dans un tableau tous les éléments qui sont séparé par un espace dans la string saisie
-
-            try
+            do
             {
-                n = Convert.ToInt32(saisie);
-                if (n == 0 && saisie.Length <= 1) // Si l'utilisateur ne saisis qu'un 0 il est renvoyé au menu
-                    Retour();Console.Clear();Main();
-            } catch { }
+                Console.WriteLine("\nSaisissez la date dont vous voulez connaître le lendemain : (Sous la forme jj mm aaa ou bien jj/mm/aaaa)");
 
-            try
-            {
-                // jour = datum[0]
-                jour = Convert.ToInt32(datum[0]);
-                mois = Convert.ToInt32(datum[1]);
-                annee = Convert.ToInt32(datum[2]);
+                saisie = Console.ReadLine();
+                datum = saisie.Split(' ' , '/');                                                          // Je met dans un tableau tous les éléments qui sont séparé par un espace dans la string saisie
 
-                //jour >= 1 && jour <= 31;
-                Console.WriteLine(datum[0]);
+                try
+                {
+                    n = Convert.ToInt32(saisie);
+                    if (n == 0 && saisie.Length <= 1)                                               // Si l'utilisateur ne saisis qu'un 0 il est renvoyé au menu
+                        Retour(); Console.Clear(); MenuB();
+                }
+                catch { }
 
-                if (VerifDate(jour, mois, annee) == false) 
+                try
+                {
+                    // jour = datum[0]
+                    jour = j = Convert.ToInt32(datum[0]);
+                    mois = m = Convert.ToInt32(datum[1]);
+                    annee = a = Convert.ToInt32(datum[2]);
+
+                    //jour >= 1 && jour <= 31;
+                    //Console.WriteLine(datum[0]);
+
+                    if (VerifDate(jour, mois, annee) == false)
+                    {
+                        Console.Clear();
+                        Console.WriteLine(cc.badVal);
+                        BEX1();
+                    }
+
+                    //Console.WriteLine(VerifDate(jour, mois, annee)); // test
+
+                    #region Lendemain
+                    jour++;
+
+                    if (jour > 28 && mois == 2 && Bissextile(annee) == false)                    // Cas 28 Février
+                    {
+                        jour = 1;
+                        mois++;
+                    }
+                    else if (jour > 29 && mois == 2 && Bissextile(annee) == true)              // Cas 29 Février
+                    {
+                        jour = 1;
+                        mois++;
+                    }
+                    else if (mois == 4 || mois == 6 || mois == 9 || mois == 12 && jour == 31)   // Cas des mois à 30 jours
+                    {
+                        jour = 1;
+                        mois++;
+                    }
+                    else if (jour == 32)                                                        // Autres cas
+                    {
+                        jour = 1;
+                        mois++;
+                    }
+
+                    if (mois > 12)
+                    {
+                        mois = 1;
+                        annee++;
+                    }
+                    #endregion Lendemain
+
+                    Console.WriteLine($"Le lendemain de {cc.cyan}{j}{cc.end}/{cc.cyan}{m}{cc.end}/{cc.cyan}{a}{cc.end} est le {cc.cyan}{jour}{cc.end}/{cc.cyan}{mois}{cc.end}/{cc.cyan}{annee}{cc.end}.");
+
+                }
+                catch
                 {
                     Console.Clear();
-                    Console.WriteLine(cc.badVal);
+                    Console.WriteLine($"{cc.warnFlag} {cc.bgRed}Pour rappel:{cc.end} {cc.red}Les mois ne contiennent que 31 jours et les années seulement 12 mois.{cc.end}");
                     BEX1();
                 }
 
-                Console.WriteLine(VerifDate(jour, mois, annee));
+                if (nextlap == 0)
+                {
+                    newlap = false;
+                }
+                else if (nextlap == 1)
+                {
+                    newlap = true;
+                }
 
-            } catch 
-            {
-                Console.Clear();
-                Console.WriteLine($"{cc.warnFlag} {cc.bgRed}Pour rappel:{cc.end} {cc.red}Les mois ne contiennent que 31 jours et les années seulement 12 mois.{cc.end}");
-                BEX1();
-            }
+            } while (newlap != false);
+            Retour();
+            MenuB();
+
         }
         static void BEX2()
         {
+            string saisie;
+            string[] datum, datum2;
+            int n, jour, jour2, j, mois, mois2, m, annee, annee2, a, cpt = 0, nextlap = 1;
+            bool newlap = false;
 
+            Console.WriteLine(@"
+  _______  ______  
+ | ____\ \/ /___ \ 
+ |  _|  \  /  __) |
+ | |___ /  \ / __/ 
+ |_____/_/\_\_____|
+       Calcul du nombre de jours entre 2 dates                    
+");
+            Console.WriteLine($"\n{cc.infoFlag} Utilisez 0 pour revenir au menu précédent.");
+
+            do
+            {
+                Console.WriteLine("\nSaisissez la première des deux dates dont vous voulez connaître l'écart : (Sous la forme jj mm aaa ou bien jj/mm/aaaa)");
+
+                saisie = Console.ReadLine();
+                datum = saisie.Split(' ', '/');
+
+                try
+                {
+                    n = Convert.ToInt32(saisie);
+                    if (n == 0 && saisie.Length <= 1)                                               // Si l'utilisateur ne saisis qu'un 0 il est renvoyé au menu
+                        Retour(); Console.Clear(); MenuB();
+
+                }
+                catch { }
+
+                jour = j = Convert.ToInt32(datum[0]); // Erreurs de saisie style 12m 05 2012 non géré ici, ca me ferais beaucoup trop changer le fonctionnement de mon code */*
+                mois = m = Convert.ToInt32(datum[1]);
+                annee = a = Convert.ToInt32(datum[2]);
+
+                if (VerifDate(jour, mois, annee) == false)
+                {
+                    Console.Clear();
+                    Console.WriteLine(cc.badVal);
+                    BEX2();
+                }               // Date 1
+
+                Console.WriteLine("\nSaisissez la deuxième date : (Sous la forme jj mm aaa ou bien jj/mm/aaaa)");
+
+                saisie = Console.ReadLine();
+                datum2 = saisie.Split(' ', '/');
+
+
+                jour2 = Convert.ToInt32(datum2[0]); // */* ici aussi
+                mois2 = Convert.ToInt32(datum2[1]);
+                annee2 = Convert.ToInt32(datum2[2]);
+
+                if (VerifDate(jour2, mois2, annee2) == false)
+                {
+                    Console.Clear();
+                    Console.WriteLine(cc.badVal);
+                    BEX2();
+                }               // Date 2
+
+                /*do
+                {
+                    jour++;
+                    cpt += 1;
+
+                    if (jour > 28 && mois == 2 && Bissextile(annee) == false)                    // Cas 28 Février
+                    {
+                        jour = 1;
+                        mois++;
+                    }
+                    else if (jour > 29 && mois == 2 && Bissextile(annee) == true)               // Cas 29 Février
+                    {
+                        jour = 1;
+                        mois++;
+                    }
+                    else if (jour == 31 && mois == 4 || mois == 6 || mois == 9 || mois == 12)   // Cas des mois à 30 jours
+                    {
+                        jour = 1;
+                        mois++;
+                    }
+                    else if (jour == 32)                                                        // Autres cas
+                    {
+                        jour = 1;
+                        mois++;
+                    }
+
+                    if (mois > 12)
+                    {
+                        mois = 1;
+                        annee++;
+                    }
+                } while (jour != jour2 && mois != mois2 && annee != annee2);*/
+
+                DateTime date1 = new DateTime(annee, mois, jour);
+                DateTime date2 = new DateTime(annee2, mois2, jour2);
+
+                TimeSpan T = date2 - date1;
+
+                Console.WriteLine($"Entre le {j}/{m}/{a} et le {jour2}/{mois2}/{annee2}, il y a exactement {cc.cyan}{/*cpt*/T.TotalDays - 1}{cc.end} jours.");
+                Console.WriteLine("\nVoulez vous recommencer(1) ou quitter(0) ?");
+                nextlap = Convert.ToInt32(Console.ReadLine());
+
+                if (nextlap == 0)
+                {
+                    newlap = false;
+                }
+                else if (nextlap == 1)
+                {
+                    newlap = true;
+                }
+                
+
+            } while (newlap != false);
+
+            Retour();
+            MenuB();
         }
         static void BEX3()
         {
