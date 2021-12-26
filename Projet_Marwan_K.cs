@@ -987,6 +987,8 @@ namespace Projet_Marwan_Kaouachi
 
             do
             {
+                // Dans cette région je récupère et vérifie la validité des dates
+                #region Saisie_dates
                 do                                                                                  // Date 1
                 {
                     Console.WriteLine("\nSaisissez la première des deux dates dont vous voulez connaître l'écart : (Sous la forme jj mm aaaa ou bien jj/mm/aaaa)");
@@ -1005,7 +1007,7 @@ namespace Projet_Marwan_Kaouachi
 
                     try
                     {
-                        jour = j = Convert.ToInt32(datum[0]); // Je vérifie dans ces try catch que l'utilisateur n'as pas saisies de caractères incorects ou mal formatté la date
+                        jour = j = Convert.ToInt32(datum[0]); // Je vérifie dans ces try catch que l'utilisateur n'as pas saisies de caractères incorects ou mal formatté la date */*
                         mois = m = Convert.ToInt32(datum[1]);
                         annee = a = Convert.ToInt32(datum[2]);
                     } catch
@@ -1033,7 +1035,7 @@ namespace Projet_Marwan_Kaouachi
 
                     try
                     {
-                        jour2 = Convert.ToInt32(datum2[0]);
+                        jour2 = Convert.ToInt32(datum2[0]); // */* ici aussi
                         mois2 = Convert.ToInt32(datum2[1]);
                         annee2 = Convert.ToInt32(datum2[2]);
                     } catch
@@ -1049,7 +1051,10 @@ namespace Projet_Marwan_Kaouachi
                     if (VerifDate(jour2, mois2, annee2) == false)
                         Console.WriteLine($"{cc.badVal}");
                 } while (VerifDate(jour2, mois2, annee2) == false);
+                #endregion Saisie_dates
 
+                // Dans cette région je vérifie que les dates sont dans le bon ordre et si ce n'est pas le cas je les mets dans le bon ordre
+                #region Ordre_dates
                 if (annee > annee2)
                 {
                     n = annee;                                                                      // Recyclage, je réutilise n (inutile si on arrive ici dans le code) pour ne pas de déclarer d'autre variable
@@ -1094,8 +1099,10 @@ namespace Projet_Marwan_Kaouachi
                     jour = jour2;
                     jour2 = n;
                 }
+                #endregion Ordre_date                                                                       
 
-                #region Boucle_manuelle
+                // Dans cette région je fais le travail demandé de façon manuelle donc sans structure qui facilite le travaille
+                #region Algo_manuel
                 do
                 {
                     jour++;
@@ -1128,17 +1135,21 @@ namespace Projet_Marwan_Kaouachi
                         annee++;
                     }
                 } while (jour != jour2 || mois != mois2 || annee != annee2);
-                #endregion Boucle_manuelle
+                #endregion Algo_manuel
 
-                /*DateTime date1 = new DateTime(annee, mois, jour);
+                //Dans cette région je fais le travail demandé à l'aide des structures (en 6 lignes contre 34 lignes au dessus)
+                #region Algo_auto
+                DateTime date1 = new DateTime(annee, mois, jour);
                 DateTime date2 = new DateTime(annee2, mois2, jour2);
 
-                TimeSpan T = date2 - date1;*/
+                TimeSpan T = date2 - date1;
+                #endregion Algo_auto
 
-                Console.WriteLine($"Entre le {j}/{m}/{a} et le {jour2}/{mois2}/{annee2}, il y a exactement {cc.cyan}{cpt/*T.TotalDays - 1*/}{cc.end} jours.");
+                Console.WriteLine($"Entre le {j}/{m}/{a} et le {jour2}/{mois2}/{annee2}, il y a exactement {cc.cyan}{cpt - 1/*T.TotalDays - 1*/}{cc.end} jours.");
                 Console.WriteLine("\nVoulez vous recommencer(1) ou quitter(0) ?");
                 nextlap = Convert.ToInt32(Console.ReadLine());
-                cpt = 1;
+                cpt = 1; // Je réinitialise le compteur pour le prochain tour
+
                 if (nextlap == 0)
                 {
                     newlap = false;
