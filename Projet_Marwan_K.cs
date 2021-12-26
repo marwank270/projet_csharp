@@ -174,6 +174,16 @@ namespace Projet_Marwan_Kaouachi
             }
             return Premier;
         }
+        static int PremierSuperieur(int prem)
+        {
+            bool p;
+            do
+            {
+                p = Premier(prem + 1);
+                prem++;
+            } while (p == false);
+            return prem;
+        }
         static bool VerifDate(int jour, int mois, int annee)
         {
             bool valide = true;
@@ -182,6 +192,8 @@ namespace Projet_Marwan_Kaouachi
                 valide = false;
 
             if (Bissextile(annee) == true && mois == 2 && jour > 28)
+                valide = false;
+            else if (Bissextile(annee) == false && mois == 2 && jour > 29)
                 valide = false;
 
             return valide;
@@ -438,24 +450,23 @@ namespace Projet_Marwan_Kaouachi
         }
         static void AEX4()
         {
-            int nombre;
-            int prem = 2;
-            int cpt = 0;
-            string ligne = "";
-            bool s;
-
             Console.WriteLine(@"  _______  ___  _   
  | ____\ \/ / || |  
  |  _|  \  /| || |_ 
  | |___ /  \|__   _|
  |_____/_/\_\  |_|  
        Décompose en produit de facteurs premier             ");
+            int nombre, n;
+            bool z;
 
             do
             {
+                int prem = 2, cpt = 0;
+                string ligne = "";
+
                 Console.WriteLine("Saisissez un nombre à décomposer en produit de facteurs premiers:");
-                int n = nombre = DemandeNombre();
-                int copy;
+                n = nombre = DemandeNombre();
+                z = n != 0;
 
                 #region Essai_1
                 /*do
@@ -513,44 +524,42 @@ namespace Projet_Marwan_Kaouachi
 
                 } while (n > 1);*/
                 #endregion Essai_2
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  Non fini
-                while (n > 1)
+                if (z == true)
                 {
-                    while (n % prem == 0)
+                    do
                     {
-                        n /= prem;
+                        cpt = 0;
+                        while (n % prem == 0)
+                        {
+                            n /= prem;
+                            cpt++;
 
-                        Console.WriteLine("facteur trouvé "+ prem);
-                        cpt++;
+                            //Console.WriteLine("facteur trouvé " + prem);
+                            //Console.WriteLine(cpt);
+                        }
 
-                        Console.WriteLine(cpt);
-                    }
-                    prem += 1;
-                    //cpt = 1;
+                        if (cpt == 1)
+                        {
+                            ligne += prem.ToString();
+                        }
+                        else if (cpt > 1)
+                        {
+                            ligne += prem.ToString() + "^" + cpt;
+                        }
 
-                    if (cpt == 1)
-                    {
-                        ligne += prem.ToString();
-                    }
-                    else
-                    {
-                        ligne += prem.ToString() + "^" + cpt;
-                    }
-                    if (n > 1)
-                    {
-                        ligne += " * ";
-                    }
-                    
+                        if (n > 1 && cpt > 0)
+                        {
+                            ligne += " * ";
+                        }
 
-                    /*do
-                    {
-                        s = Premier(prem + 1);
-                        prem += 1;
-                    } while (s != true);*/
+                        prem = PremierSuperieur(prem);
+
+                    } while (n != 1);
+                    Console.WriteLine($"Après décomposition : {cc.cyan}{nombre}{cc.end} = {cc.cyan}{ligne}{cc.end}");
                 }
+                
 
-                Console.WriteLine($"Après décomposition : {cc.cyan}{nombre}{cc.end} = {cc.cyan}{ligne}{cc.end}");
-            } while (nombre != 0);
+            } while (z != false);
 
             Retour();
             MenuA();
@@ -963,7 +972,7 @@ namespace Projet_Marwan_Kaouachi
         {
             string saisie;
             string[] datum, datum2;
-            int n, jour, jour2, j, mois, mois2, m, annee, annee2, a, cpt = 0, nextlap = 1;
+            int n, jour, jour2, j, mois, mois2, m, annee, annee2, a, cpt = 1, nextlap = 1;
             bool newlap = false;
 
             Console.WriteLine(@"
@@ -978,49 +987,116 @@ namespace Projet_Marwan_Kaouachi
 
             do
             {
-                Console.WriteLine("\nSaisissez la première des deux dates dont vous voulez connaître l'écart : (Sous la forme jj mm aaa ou bien jj/mm/aaaa)");
-
-                saisie = Console.ReadLine();
-                datum = saisie.Split(' ', '/');
-
-                try
+                do                                                                                  // Date 1
                 {
-                    n = Convert.ToInt32(saisie);
-                    if (n == 0 && saisie.Length <= 1)                                               // Si l'utilisateur ne saisis qu'un 0 il est renvoyé au menu
-                        Retour(); Console.Clear(); MenuB();
+                    Console.WriteLine("\nSaisissez la première des deux dates dont vous voulez connaître l'écart : (Sous la forme jj mm aaaa ou bien jj/mm/aaaa)");
 
+                    saisie = Console.ReadLine();
+                    datum = saisie.Split(' ', '/');
+
+                    try
+                    {
+                        n = Convert.ToInt32(saisie);
+                        if (n == 0 && saisie.Length <= 1)                                               // Si l'utilisateur ne saisis qu'un 0 il est renvoyé au menu
+                            Retour(); Console.Clear(); MenuB();
+
+                    }
+                    catch { }
+
+                    try
+                    {
+                        jour = j = Convert.ToInt32(datum[0]); // Je vérifie dans ces try catch que l'utilisateur n'as pas saisies de caractères incorects ou mal formatté la date
+                        mois = m = Convert.ToInt32(datum[1]);
+                        annee = a = Convert.ToInt32(datum[2]);
+                    } catch
+                    {
+                        Console.Clear();
+                        Console.WriteLine($"{cc.warnFlag} Le format de la date doit être {cc.bgRed}jj mm (aa)aa{cc.end} ou bien {cc.bgRed}jj/mm/(aa)aa{cc.end}");
+                        BEX2();
+                    }
+
+                    jour = j = Convert.ToInt32(datum[0]);
+                    mois = m = Convert.ToInt32(datum[1]);
+                    annee = a = Convert.ToInt32(datum[2]);
+
+                    if (VerifDate(jour, mois, annee) == false)
+                        Console.WriteLine($"{cc.badVal}");
+                } while (VerifDate(jour, mois, annee) == false);
+
+
+                do                                                                                  // Date 2
+                {
+                    Console.WriteLine("\nSaisissez la deuxième date : (Sous la forme jj mm aaaa ou bien jj/mm/aaaa)");
+
+                    saisie = Console.ReadLine();
+                    datum2 = saisie.Split(' ', '/');
+
+                    try
+                    {
+                        jour2 = Convert.ToInt32(datum2[0]);
+                        mois2 = Convert.ToInt32(datum2[1]);
+                        annee2 = Convert.ToInt32(datum2[2]);
+                    } catch
+                    {
+                        Console.Clear();
+                        Console.WriteLine($"{cc.warnFlag} Le format de la date doit être {cc.bgRed}jj mm (aa)aa{cc.end} ou bien {cc.bgRed}jj/mm/(aa)aa{cc.end}");
+                        BEX2();
+                    }
+
+                    jour2 = Convert.ToInt32(datum2[0]);
+                    mois2 = Convert.ToInt32(datum2[1]);
+                    annee2 = Convert.ToInt32(datum2[2]);
+                    if (VerifDate(jour2, mois2, annee2) == false)
+                        Console.WriteLine($"{cc.badVal}");
+                } while (VerifDate(jour2, mois2, annee2) == false);
+
+                if (annee > annee2)
+                {
+                    n = annee;                                                                      // Recyclage, je réutilise n (inutile si on arrive ici dans le code) pour ne pas de déclarer d'autre variable
+                    annee = annee2;
+                    annee2 = n;
+
+                    n = mois;
+                    mois = mois2;
+                    mois2 = n;
+
+                    n = jour;
+                    jour = jour2;
+                    jour2 = n;
+
+                    Console.WriteLine("Vous n'avez pas mis les dates dans le bon ordre mais pas de soucis je gère ca, j'ai remis les années dans le bons sens.");
+                } else if (mois > mois2 && annee >= annee2)
+                {
+                    n = annee;                                                                      
+                    annee = annee2;
+                    annee2 = n;
+
+                    n = mois;
+                    mois = mois2;
+                    mois2 = n;
+
+                    n = jour;
+                    jour = jour2;
+                    jour2 = n;
+
+                    Console.WriteLine("Vous n'avez pas mis les dates dans le bon ordre mais pas de soucis je gère ca, j'ai remis les mois dans le bons sens.");
+                } else if (jour > jour2 && mois >= mois2 && annee >= annee2)
+                {
+                    n = annee;
+                    annee = annee2;
+                    annee2 = n;
+
+                    n = mois;
+                    mois = mois2;
+                    mois2 = n;
+
+                    n = jour;
+                    jour = jour2;
+                    jour2 = n;
                 }
-                catch { }
 
-                jour = j = Convert.ToInt32(datum[0]); // Erreurs de saisie style 12m 05 2012 non géré ici, ca me ferais beaucoup trop changer le fonctionnement de mon code */*
-                mois = m = Convert.ToInt32(datum[1]);
-                annee = a = Convert.ToInt32(datum[2]);
-
-                if (VerifDate(jour, mois, annee) == false)
-                {
-                    Console.Clear();
-                    Console.WriteLine(cc.badVal);
-                    BEX2();
-                }               // Date 1
-
-                Console.WriteLine("\nSaisissez la deuxième date : (Sous la forme jj mm aaa ou bien jj/mm/aaaa)");
-
-                saisie = Console.ReadLine();
-                datum2 = saisie.Split(' ', '/');
-
-
-                jour2 = Convert.ToInt32(datum2[0]); // */* ici aussi
-                mois2 = Convert.ToInt32(datum2[1]);
-                annee2 = Convert.ToInt32(datum2[2]);
-
-                if (VerifDate(jour2, mois2, annee2) == false)
-                {
-                    Console.Clear();
-                    Console.WriteLine(cc.badVal);
-                    BEX2();
-                }               // Date 2
-
-                /*do
+                #region Boucle_manuelle
+                do
                 {
                     jour++;
                     cpt += 1;
@@ -1035,7 +1111,7 @@ namespace Projet_Marwan_Kaouachi
                         jour = 1;
                         mois++;
                     }
-                    else if (jour == 31 && mois == 4 || mois == 6 || mois == 9 || mois == 12)   // Cas des mois à 30 jours
+                    else if (jour == 31 && mois == 4 || jour == 31 && mois == 6 || jour == 31 &&  mois == 9 || jour == 31 && mois == 12)   // Cas des mois à 30 jours
                     {
                         jour = 1;
                         mois++;
@@ -1051,17 +1127,18 @@ namespace Projet_Marwan_Kaouachi
                         mois = 1;
                         annee++;
                     }
-                } while (jour != jour2 && mois != mois2 && annee != annee2);*/
+                } while (jour != jour2 || mois != mois2 || annee != annee2);
+                #endregion Boucle_manuelle
 
-                DateTime date1 = new DateTime(annee, mois, jour);
+                /*DateTime date1 = new DateTime(annee, mois, jour);
                 DateTime date2 = new DateTime(annee2, mois2, jour2);
 
-                TimeSpan T = date2 - date1;
+                TimeSpan T = date2 - date1;*/
 
-                Console.WriteLine($"Entre le {j}/{m}/{a} et le {jour2}/{mois2}/{annee2}, il y a exactement {cc.cyan}{/*cpt*/T.TotalDays - 1}{cc.end} jours.");
+                Console.WriteLine($"Entre le {j}/{m}/{a} et le {jour2}/{mois2}/{annee2}, il y a exactement {cc.cyan}{cpt/*T.TotalDays - 1*/}{cc.end} jours.");
                 Console.WriteLine("\nVoulez vous recommencer(1) ou quitter(0) ?");
                 nextlap = Convert.ToInt32(Console.ReadLine());
-
+                cpt = 1;
                 if (nextlap == 0)
                 {
                     newlap = false;
