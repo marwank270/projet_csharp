@@ -52,7 +52,7 @@
   ║ 2 ║ Et esthétique ║ Pour une meilleure visibilitée ║
   ╚═══╩═══════════════╩════════════════════════════════╝
   ```
-> Remarque: J'ai oublié de pull l'update d'avancement hier soir donc je le fais à 4h mdrrr
+> Remarque: J'ai oublié de push l'update d'avancement hier soir donc je le fais à 4h mdrrr
 
 # 28/12/21:
   - Continuation de la Partie B:
