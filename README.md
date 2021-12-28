@@ -37,6 +37,14 @@
   - Continuation de la Partie B : Exercice 3 commencé et terminé, fonctionnel
   - Exercice 4 commencé, algo de Gauss fonctionnel, les deux autres ne sont pas encore commencé
   - Remarque: J'ai oublié de pull l'update d'avancement hier soir donc je le fais à 3h30 mdrrr
+  - Optimisation: Restylisation complète de l'interface graphique du programme, j'ai opté pour une mise en blocs pour donner une impression de boutons ou de vitrine, Exemple :
+  ```
+  ╔═══╦═══════════════╦══════════════════╗
+  ║ 1 ║ Mise en blocs ║ Avec des options ║
+  ╠═══╬═══════════════╬══════════════════╩═════════════╗
+  ║ 2 ║ Et esthétique ║ Pour une meilleure visibilitée ║
+  ╚═══╩═══════════════╩════════════════════════════════╝
+  ```
 
 # jj/mm/yy
   
