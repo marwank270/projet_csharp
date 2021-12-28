@@ -59,7 +59,8 @@ namespace Projet_Marwan_Kaouachi
         static void Main()
         {
             //Console.WriteLine(Console.WindowHeight + " x " + Console.WindowWidth);
-            Console.SetWindowSize(120, 32);
+            Console.SetWindowSize(120, 32);                 // Je redimentionne la fenêtre au démarage pour qu'elle soit adapté a l'affichage complet de mes menus
+            Console.Title = "Projet Info C# Marwan K.";     // Je change ici le titre de ma page juste pour faire plus beau que de voir le chemin d'accès d'execution à chaques fois
 
             #region ASCII
             /*Console.WriteLine(@"     _                _ _           _   _               ____   ___ ____  _           ____   ___ ____  ____  
@@ -317,6 +318,7 @@ namespace Projet_Marwan_Kaouachi
 ╠═════════════════════════════════════╩═════════════════════╗
 ║{cc.retourZero} ║   
 ╚═══════════════════════════════════════════════════════════╝");
+
             Console.WriteLine("\n╔═══╦═════════════════════════════════════════════════════════════╗");
             Console.WriteLine("║ 1 ║ Vérifier si un nombre est Premier                           ║");
             Console.WriteLine("╠═══╬═════════════════════════════════════════════════════════════╣");
@@ -372,7 +374,7 @@ namespace Projet_Marwan_Kaouachi
                     break;
             }
 
-        } // Penser à changer les cw pour mettre des info flag à part 
+        } // Penser à regrouper les cw pour L'optimisation générale
         static void MenuB()
         {
             int? choixB;
@@ -398,7 +400,7 @@ namespace Projet_Marwan_Kaouachi
             Console.WriteLine("╠═══╬═════════════════════════════════════════╣");
             Console.WriteLine("║ 4 ║ Calculer la date de pâques              ║");
             Console.WriteLine("╠═══╬═════════════════════════════════════════╣");
-            Console.WriteLine("║ 5 ║  Afficher le calendrier d'une année     ║");
+            Console.WriteLine("║ 5 ║ Afficher le calendrier d'une année      ║");
             Console.WriteLine("╚═══╩═════════════════════════════════════════╝");
 
             Console.WriteLine($"\n{cc.under}Choisissez un exercice parmis ceux ci-dessus :{cc.end}");
@@ -603,7 +605,7 @@ namespace Projet_Marwan_Kaouachi
 
             do
             {
-                int prem = 2, cpt = 0;
+                int prem = 2, cpt;
                 string ligne = "";
 
                 Console.WriteLine("Saisissez un nombre à décomposer en produit de facteurs premiers:");
@@ -1157,7 +1159,7 @@ namespace Projet_Marwan_Kaouachi
         {
             string saisie;
             string[] datum, datum2;
-            int n, jour, jour2, j, mois, mois2, m, annee, annee2, a, cpt = 1, nextlap = 1;
+            int n, jour, jour2, j, mois, mois2, m, annee, annee2, a, cpt = 1, nextlap;
             bool newlap = false;
 
             Console.WriteLine(@$"╔════════════════════╗
@@ -1373,7 +1375,7 @@ namespace Projet_Marwan_Kaouachi
             do
             {
                 int[] saisie = DemandeDate();                                                                       // Récupération et assignation de chaque partie de la date socké dans le tableau renvoyé par DemandeDate();
-                jour = saisie[0];
+                jour = saisie[0];                                                                                   // 
                 mois = saisie[1];
                 annee = saisie[2];
 
@@ -1384,7 +1386,7 @@ namespace Projet_Marwan_Kaouachi
                 {
                     Console.WriteLine($"{cc.cyan}{annee}{cc.end} {cc.red}n'est pas{cc.end} une année bissextile");
                 }
-            } while (jour != 0);
+            } while (jour != 0 || mois != 0 || annee != 0);
             Retour();
             MenuB();
         }
@@ -1440,6 +1442,7 @@ namespace Projet_Marwan_Kaouachi
                     break;
             }
 
+            #region Algorithmes_pâques
             static void AlgoGauss()
             {
                 bool quit = false;
@@ -1472,7 +1475,7 @@ namespace Projet_Marwan_Kaouachi
                         catch
                         {
                             Console.Clear();
-                            Console.WriteLine(cc.badVal + $" Veillez à ce que l'année sois {cc.red}entière et positive{cc.end}.");
+                            Console.WriteLine($"{cc.badVal} Veillez à ce que l'année sois {cc.red}entière et positive{cc.end}.");
                             AlgoGauss();                    // Recommence si la conversion échoue
                         }
 
@@ -1520,6 +1523,7 @@ namespace Projet_Marwan_Kaouachi
             }
             static void AlgoMeeus()
             {
+                bool quit = false;
 
                 Console.WriteLine(@$"
 ╔═══════════════════════════════════════════════════════════════════╗
@@ -1534,11 +1538,131 @@ namespace Projet_Marwan_Kaouachi
 ╚═══════════════════════════════════════════════════════════╝
 ");
 
+                #region Essai_1
+                /*do
+                {
+                    Console.WriteLine($"{cc.under}Saisissez l'année dont vous voulez calculer la date de Pâques avec l'algorithme de Meeus :{cc.end} (sous la forme aaaa)");
+                    uint year; // uint pour que la valeur ne puisse pas être négative
+
+                    do
+                    {
+                        string saisie = Console.ReadLine();
+
+                        try
+                        {
+                            year = Convert.ToUInt32(saisie);
+                        }
+                        catch
+                        {
+                            Console.Clear();
+                            Console.WriteLine(cc.badVal + $" Veillez à ce que l'année sois {cc.red}entière et positive{cc.end}.");              
+                            AlgoMeeus();                    // Recommence si la conversion échoue
+                        }
+
+                        year = Convert.ToUInt32(saisie);
+                        if (year == 0)
+                        {
+                            quit = true;
+                            Retour();
+                            BEX4();
+                        }
+                        else if (year <= 326)
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"{cc.warnFlag} Le calendrier Julien ne commence qu'en 326, veuillez réessayer"); // Message d'erreur et d'avertissement
+                            AlgoMeeus();
+                        }
+                    } while (year <= 326);
+
+                    int annee = Convert.ToInt32(year);
+
+                    int A = annee % 19;
+                    int B = annee % 17;
+                    int C = annee % 4;
+                    int D = (19 * A + 15) % 30;
+                    int E = (2 * C + 4 * B - D + 34);
+                    int G = D + E + 114;
+                    int F = G / 31;
+
+                    if (F == 4)
+                    {
+                        Console.WriteLine($"En {cc.cyan}{annee}{cc.end} la date de Pâques est le {cc.cyan}{G + 1} mars{cc.end}.");
+                    } else if (F == 3)
+                    {
+                        Console.WriteLine($"En {cc.cyan}{annee}{cc.end} la date de Pâques est le {cc.cyan}{G + 1} mars{cc.end}.");
+                    }
+
+                } while (quit != true);*/
+                #endregion Essai_2
+
+                do
+                {
+                    Console.WriteLine($"{cc.under}Saisissez l'année dont vous voulez calculer la date de Pâques avec l'algorithme de Meeus :{cc.end} (sous la forme aaaa)");
+                    uint year; // uint pour que la valeur ne puisse pas être négative
+
+                    do
+                    {
+                        string saisie = Console.ReadLine();
+
+                        try
+                        {
+                            year = Convert.ToUInt32(saisie);
+                        }
+                        catch
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"{cc.badVal} Veillez à ce que l'année sois {cc.red}entière et positive{cc.end}.");
+                            AlgoMeeus();                    // Recommence si la conversion échoue
+                        }
+
+                        year = Convert.ToUInt32(saisie);
+                        if (year == 0)
+                        {
+                            quit = true;
+                            Retour();
+                            BEX4();
+                        }
+                        else if (year < 1583)
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"{cc.warnFlag} Le calendrier Grégorien ne commence qu'en 1583, veuillez réessayer"); // Message d'erreur et d'avertissement
+                            AlgoMeeus();
+                        }
+                    } while (year < 1583);
+
+                    int annee = Convert.ToInt32(year);
+                    
+                    int n = annee % 19;            // Écris à l'aide des explications disponible sur Wikipédia : https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques_selon_la_m%C3%A9thode_de_Meeus
+                    int c = annee / 100;
+                    int u = annee % 100;
+                    int s = c / 4;
+                    int t = c % 4;
+                    int p = (c + 8) / 25;
+                    int q = (c - p + 1) / 3;
+                    int e = (19 * n + c - s - q + 15) % 30;
+                    int b = u / 4;
+                    int d = u % 4;
+                    int L = (2 * t + 2 * b - e - d + 32) % 7;
+                    int h = (n + 11 * e + 22 * 1) / 451;
+                    int m = (e + 1 - 7 * h + 114) / 31;
+                    int j = (e + L - 7 * h + 114) % 31;
+
+                    if (m == 4)
+                    {
+                        Console.WriteLine($"En {cc.cyan}{annee}{cc.end} la date de Pâques est le {cc.cyan}{j + 1} avril{cc.end}.");
+                    }
+                    else if (m == 3)
+                    {
+                        Console.WriteLine($"En {cc.cyan}{annee}{cc.end} la date de Pâques est le {cc.cyan}{j + 1} mars{cc.end}.");
+                    }
+
+                } while (quit != true);
                 Retour();
                 BEX4();
             }
             static void AlgoConway()
             {
+                bool quit = false;
 
                 Console.WriteLine(@$"
 ╔════════════════════════════════════════════════════════════════════════════╗
@@ -1553,9 +1677,76 @@ namespace Projet_Marwan_Kaouachi
 ╚═══════════════════════════════════════════════════════════╝
 ");
 
+                do
+                {
+                    Console.WriteLine($"{cc.under}Saisissez l'année dont vous voulez calculer la date de Pâques avec l'algorithme de Meeus :{cc.end} (sous la forme aaaa)");
+                    uint year; // uint pour que la valeur ne puisse pas être négative
+
+                    do
+                    {
+                        string saisie = Console.ReadLine();
+
+                        try
+                        {
+                            year = Convert.ToUInt32(saisie);
+                        }
+                        catch
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"{cc.badVal} Veillez à ce que l'année sois {cc.red}entière et positive{cc.end}.");
+                            AlgoMeeus();                    // Recommence si la conversion échoue
+                        }
+
+                        year = Convert.ToUInt32(saisie);
+                        if (year == 0)
+                        {
+                            quit = true;
+                            Retour();
+                            BEX4();
+                        }
+                        else if (year < 1583)
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"{cc.warnFlag} Le calendrier Grégorien ne commence qu'en 1583, veuillez réessayer"); // Message d'erreur et d'avertissement
+                            AlgoMeeus();
+                        }
+                    } while (year < 1583);
+
+                    int annee = Convert.ToInt32(year);
+
+                    int t = annee % 100;
+                    int s = annee / 100;
+                    int a = (t / 4);
+                    int p = s % 4;
+                    int jps = (9 - 2 * p) % 7;
+                    int jp = (jps + t + a) % 7;
+                    int g = annee % 19;
+                    int Gg = g + 1;
+                    int b = (s / 4);
+                    int r = 8 * (s + 11) / 25;
+                    int C = -s + b + r;
+                    int d = (11 * Gg + C) % 30;
+                    d = (d + 30) % 30;
+                    int h = (551 - 19 * d + Gg) / 544;
+                    int e = (50 - d - h) % 7;
+                    int f = (e + jp) % 7;
+                    int R = 57 - d - f - h;
+
+                    if (R > 32)
+                    {
+                        Console.WriteLine($"En {cc.cyan}{annee}{cc.end} la date de Pâques est le {cc.cyan}{R - 31} avril{cc.end}.");
+                    }
+                    else if (R < 32)
+                    {
+                        Console.WriteLine($"En {cc.cyan}{annee}{cc.end} la date de Pâques est le {cc.cyan}{R} mars{cc.end}.");
+                    }
+
+                } while (quit != true);
                 Retour();
                 BEX4();
+                
             }
+            #endregion Algorithme_pâques
         }
         static void BEX5()
         {
@@ -1571,6 +1762,100 @@ namespace Projet_Marwan_Kaouachi
 │{cc.retourZero} │
 └───────────────────────────────────────────────────────────┘
 ");
+
+            
+            
+            string saisie;
+            string[] semaine = { "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche" };
+            uint year, day_week;
+            int annee, jour_sem = 0;
+            bool quit = false;
+            do
+            {
+                Console.WriteLine($"{cc.under}Saisissez l'année dont vous voulez voir le calendrier :{cc.end}");
+                bool bis;
+                #region Saisie_année
+                do
+                {
+                    saisie = Console.ReadLine();
+                    try
+                    {
+                        year = Convert.ToUInt32(saisie);    // Test de conversion de en UInt
+                    } catch
+                    {
+                        Console.Clear();
+                        Console.WriteLine($"{cc.badVal} Veillez à ce que l'année sois {cc.red}entière et positive{cc.end}.");
+                        BEX5();               
+                    }
+                    //annee = Convert.ToInt32(year);        // Variable non déclaré dans la boucles
+                    annee = Convert.ToInt32(saisie);        // Conversion réussie dans le try donc je l'assigne ici
+
+                    if (annee == 0)
+                    {
+                        quit = true;
+                        Retour();
+                        BEX5();
+                    }
+                    else if (annee < 1583)
+                    {
+                        Console.Clear();
+                        Console.WriteLine($"{cc.warnFlag} Le calendrier Grégorien ne commence qu'en 1583, veuillez réessayer"); // Message d'erreur et d'avertissement
+                        BEX5();
+                    } else
+                    {
+                        bis = Bissextile(annee);
+                    }
+                } while (annee < 1583);
+                #endregion Saisie_année
+                do
+                {
+                    Console.WriteLine($"{cc.under}Indiquez par quel jours l'année commence :{cc.end} (1 : Lundi, 2 : Mardi, 3 : Mercredi, 4 : Jeudi, 5 : Vendredi, 6 : Samedi, 7 : Dimanche)");
+                    saisie = Console.ReadLine();
+
+                    try
+                    {
+                        day_week = Convert.ToUInt32(saisie);
+                    } catch
+                    {
+                        Console.WriteLine($"{cc.badVal} Vous devez saisir un entier compris entre 1 et 7 inclus pour sélectionner un jour ou utiliser 0 pour quitter");
+                    }
+                    jour_sem = Convert.ToInt32(saisie);
+
+                    if (jour_sem == 0)
+                    {
+                        quit = true;
+                        Retour();
+                        BEX5();
+
+                    }
+                } while (jour_sem >= 6 && jour_sem <= 0);
+
+                switch (jour_sem)
+                {
+                    case 1:
+                        Console.WriteLine(semaine[0]);
+                        break;
+                    case 2:
+                        Console.WriteLine(semaine[1]);
+                        break;
+                    case 3:
+                        Console.WriteLine(semaine[2]);
+                        break;
+                    case 4:
+                        Console.WriteLine(semaine[3]);
+                        break;
+                    case 5:
+                        Console.WriteLine(semaine[4]);
+                        break;
+                    case 6:
+                        Console.WriteLine(semaine[5]);
+                        break;
+                    case 7:
+                        Console.WriteLine(semaine[6]);
+                        break;
+                }
+
+            } while (quit != true);
 
             Retour();
             MenuB();
