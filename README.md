@@ -26,10 +26,10 @@
 
 # 26/12/21:
   - Fin de la Partie A: Exercice 4 ENFIN fonctionnel
-  	- Erreur 1: Le compteur qui me servais a calculer les puissances, était délaré et initialisé hors de ma boucle do {} while () {} 
+    - Erreur 1: Le compteur qui me servais a calculer les puissances, était délaré et initialisé hors de ma boucle `do {} while () {}`
   	  (cf : [Projet_Marwan_K.cs Ligne 531](https://github.com/marwank270/projet_csharp/blob/0657f5b9d103cdca473e9c0b1dd5bdfb9507cef1/Projet_Marwan_K.cs#L531))
   - Continuation de la Partie B : Exercice 2 Amélioré, saisies sécurisée au max wsh et surtout : ENFIN FONCTINONEL !
-  	- Erreur 2: J'avais oublié de mettre jour == 31 derrière tous les autres "||" 
+  	- Erreur 2: J'avais oublié de mettre `jour == 31` derrière tous les autres `||`
   	  (cf : [Projet_Marwan_K.cs Ligne 1121](https://github.com/marwank270/projet_csharp/blob/0657f5b9d103cdca473e9c0b1dd5bdfb9507cef1/Projet_Marwan_K.cs#L1121))
   - Optimisation: Ménage dans les Exercices 1 et 2 de la Partie B
 
@@ -44,7 +44,7 @@
   ║ 2 ║ Et esthétique ║ Pour une meilleure visibilitée ║
   ╚═══╩═══════════════╩════════════════════════════════╝
   ```
-  - Remarque: J'ai oublié de pull l'update d'avancement hier soir donc je le fais à 3h50 mdrrr
+  - Remarque: J'ai oublié de pull l'update d'avancement hier soir donc je le fais à 4h mdrrr
 
 # jj/mm/yy
   
