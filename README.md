@@ -44,7 +44,7 @@
   ║ 2 ║ Et esthétique ║ Pour une meilleure visibilitée ║
   ╚═══╩═══════════════╩════════════════════════════════╝
   ```
-  - Remarque: J'ai oublié de pull l'update d'avancement hier soir donc je le fais à 3h30 mdrrr
+  - Remarque: J'ai oublié de pull l'update d'avancement hier soir donc je le fais à 3h50 mdrrr
 
 # jj/mm/yy
   
