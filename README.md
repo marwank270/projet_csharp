@@ -1,5 +1,5 @@
 # **Projet d'informatique de l'ESILV** 
-## *Progression synchronisée avec [mon Github (seul repository publique)](https://github.com/marwank270/projet_csharp/)*
+## *Progression synchronisée avec [mon Github](https://github.com/marwank270/projet_csharp/tree/281221)*
 
 
 # Avancement par jour
