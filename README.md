@@ -8,11 +8,11 @@
 
 # 06/12/21:
   Fin de la Partie A: Exercice 5 et 6 terminé
-	Optimisation: Nouvelle nommenclatures pour certaines variables assez abstraites, Ajout de quelques régions pour mieux organiser mon code
+  Optimisation: Nouvelle nommenclatures pour certaines variables assez abstraites, Ajout de quelques régions pour mieux organiser mon code
 
 # 07/12/21:
   Début de la Partie B: Exercice 1 débuté mais non fonctionnel du a des erreurs d'exceptions (à gérer sous peu)
-	Optimisation: Transformation de certaines boucles, amélioration de l'esthétique générales
+  Optimisation: Transformation de certaines boucles, amélioration de l'esthétique générales
 
 # 24/12/21:
   Début de la Partie B: Exercice 1 terminé, Exercice 2 débuté
