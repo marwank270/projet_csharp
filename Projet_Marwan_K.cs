@@ -36,6 +36,9 @@ namespace Projet_Marwan_Kaouachi
         public const string white = "\x1b[37m"; // Balise police blanche
         public const string bgWhite = "\x1b[47m"; // Balise fond blanche
 
+        public const string lightPurple = "\x1b[38;2;129;10;209m";
+        public const string bgLightPurple = "\x1b[48;2;129;10;209m";
+
         public const string warnFlag = bgRed + "[ ! ]" + end;
         public const string wrongFlag = bgYellow + "[ ? ]" + end;
         public const string infoFlag = bgBlue + "[ i ]" + end;
@@ -44,40 +47,77 @@ namespace Projet_Marwan_Kaouachi
         public const string badVal = wrongFlag + " Il semble que vous n'avez pas saisis une valeur conforme.";
 
         /*
-         Traduit depuis un fichier .js sue j'ai fais pour un projet personnel (https://pastebin.com/nLVM6aR6) 
+         Traduit depuis un fichier .js que j'ai fais pour un projet personnel (https://pastebin.com/nLVM6aR6) 
          Je sais que C# embarque la fonction ConsoleColor mais elle fonctionne différement selon les version alors je préfère utiliser Les codes d'escape ANSI, de plus ca me fait un peu d'entraineent
          */
         #endregion ConsoleColor
+
+        public const string retourZero = infoFlag + " Utilisez " + cyan + "0" + end + " pour quitter et revenir au menu précédent"; // Pour ne pas avoir à la retapper partout
     }
     class Program
     {
         static void Main()
-        {  
+        {
+            //Console.WriteLine(Console.WindowHeight + " x " + Console.WindowWidth);
+            Console.SetWindowSize(120, 32);
 
             #region ASCII
-            Console.WriteLine(@"     _                _ _           _   _               ____   ___ ____  _           ____   ___ ____  ____  
+            /*Console.WriteLine(@"     _                _ _           _   _               ____   ___ ____  _           ____   ___ ____  ____  
     / \   _ __  _ __ | (_) ___ __ _| |_(_) ___  _ __   |___ \ / _ \___ \/ |         |___ \ / _ \___ \|___ \ 
    / _ \ | '_ \| '_ \| | |/ __/ _` | __| |/ _ \| '_ \    __) | | | |__) | |  _____    __) | | | |__) | __) |
   / ___ \| |_) | |_) | | | (_| (_| | |_| | (_) | | | |  / __/| |_| / __/| | |_____|  / __/| |_| / __/ / __/ 
  /_/   \_\ .__/| .__/|_|_|\___\__,_|\__|_|\___/|_| |_| |_____|\___/_____|_|         |_____|\___/_____|_____|
          |_|   |_|                                                                                          
-                  by Marwan Kaouachi                                                                        ");
+                  by Marwan Kaouachi                                                                        ");*/
             // @"" signifie que la string gardera la mise en forme d'origine
 
+
+
+            /*Console.WriteLine(@$"{cc.cyan}╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════╗{cc.end}   
+{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}      _                _ _           _   _               ____   ___ ____  _           ____   ___ ____  ____   {cc.end}{cc.cyan}║{cc.end}
+{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}     / \   _ __  _ __ | (_) ___ __ _| |_(_) ___  _ __   |___ \ / _ \___ \/ |         |___ \ / _ \___ \|___ \  {cc.end}{cc.cyan}║{cc.end}
+{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}    / _ \ | '_ \| '_ \| | |/ __/ _` | __| |/ _ \| '_ \    __) | | | |__) | |  _____    __) | | | |__) | __) | {cc.end}{cc.cyan}║{cc.end}
+{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}   / ___ \| |_) | |_) | | | (_| (_| | |_| | (_) | | | |  / __/| |_| / __/| | |_____|  / __/| |_| / __/ / __/  {cc.end}{cc.cyan}║{cc.end}
+{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}  /_/   \_\ .__/| .__/|_|_|\___\__,_|\__|_|\___/|_| |_| |_____|\___/_____|_|         |_____|\___/_____|_____| {cc.end}{cc.cyan}║{cc.end}
+{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}          |_|   |_|                                                                                           {cc.end}{cc.cyan}║{cc.end}
+{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}                     {cc.end}{cc.cyan}┌────────────────────┐{cc.bgWhite}                                                                   {cc.end}{cc.cyan}║{cc.end}
+{cc.cyan}╚═════════════════════┤{cc.end}{cc.bgLightPurple} by Marwan Kaouachi {cc.end}{cc.cyan}├═══════════════════════════════════════════════════════════════════╝{cc.end} 
+                      {cc.cyan}└────────────────────┘ {cc.end}");*/
+
+            Console.WriteLine(@$"{cc.cyan}╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════╗{cc.end}   
+{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}     _                _ _           _   _               ____   ___ ____  _           ____   ___ ____  ____   {cc.end}{cc.cyan}║{cc.end}
+{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}    / \   _ __  _ __ | (_) ___ __ _| |_(_) ___  _ __   |___ \ / _ \___ \/ |         |___ \ / _ \___ \|___ \  {cc.end}{cc.cyan}║{cc.end}
+{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}   / _ \ | '_ \| '_ \| | |/ __/ _` | __| |/ _ \| '_ \    __) | | | |__) | |  _____    __) | | | |__) | __) | {cc.end}{cc.cyan}║{cc.end}
+{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}  / ___ \| |_) | |_) | | | (_| (_| | |_| | (_) | | | |  / __/| |_| / __/| | |_____|  / __/| |_| / __/ / __/  {cc.end}{cc.cyan}║{cc.end}
+{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite} /_/   \_\ .__/| .__/|_|_|\___\__,_|\__|_|\___/|_| |_| |_____|\___/_____|_|         |_____|\___/_____|_____| {cc.end}{cc.cyan}║{cc.end}
+{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}         |_|   |_|                                                                                           {cc.end}{cc.cyan}║{cc.end}
+{cc.cyan}╚═════════════════════╦════════════════════╦══════════════════════════════════════════════════════════════════╝{cc.end} 
+                      {cc.cyan}║{cc.end}{cc.bgLightPurple} by Marwan Kaouachi {cc.end}{cc.cyan}║{cc.end}
+                      {cc.cyan}╚════════════════════╝ {cc.end}");
+
             #endregion ASCII
+
             #region Menu Principal
             int choix;
             do
             {
-                Console.WriteLine($"\n1 : Partie A - Cette partie est un ensemble d'AEXercice faits pour s'amuser entre les calculs et le codage.\n2 : Partie B - Cette partie se concentre plus sur des AEXercice de travail de la logique du codage.\n3 : Partie C - Cette dernière partie est une partie innovation, a nous de jouer !\n\n0 : Quitter le programme.");
+                Console.WriteLine("╔═══╦══════════╦═════════════════════════════════════════════════════════════════════════════════════════════╗");
+                Console.WriteLine("║ 1 ║ Partie A ║ Cette partie est un ensemble d'exercice faits pour s'amuser entre les calculs et le codage. ║");
+                Console.WriteLine("╠═══╬══════════╬═════════════════════════════════════════════════════════════════════════════════════════════╣");
+                Console.WriteLine("║ 2 ║ Partie B ║ Cette partie se concentre plus sur des exercices de travail de la logique du codage.        ║");
+                Console.WriteLine("╠═══╬══════════╬═════════════════════════════════════════════════════════════════════════════════════════════╣");
+                Console.WriteLine("║ 3 ║ Partie C ║ Cette dernière partie est une partie innovation, a nous de jouer !                          ║");
+                Console.WriteLine("╠═══╬═════════╦╩═════════════════════════════════════╦═══════════════════════════════════════════════════════╝");
+                Console.WriteLine("║ 0 ║ Quitter ║ Quitte le programme de façon propre. ║");
+                Console.WriteLine("╚═══╩═════════╩══════════════════════════════════════╝");
 
-                Console.WriteLine("\nBienvenue dans mon programme, veuillez choisir une Partie a tester.");
+                Console.WriteLine($"\n{cc.under}Bienvenue dans mon programme, par où voulez-vous commencer ?{cc.end}");
                 choix = DemandeNombre();
             }
             while (choix <= 0 && choix > 4);
             #endregion Menu Principal
-            #region Traitement
 
+            #region Traitement
             switch (choix)
             {
                 case 0: // Si l'entrée de l'utilisateur est 0
@@ -137,18 +177,20 @@ namespace Projet_Marwan_Kaouachi
         static int DemandeNombre()
         {
             int? choix; // Déclaration de la variable de choix qui doit être une variable int
+            uint ch;
             do
             {
                 try
                 {
-                    choix = Convert.ToInt32(Console.ReadLine());
+                    choix = Convert.ToInt32(Console.ReadLine()); // Je vérifie que le nombre est bien entier ici
+                    ch = Convert.ToUInt32(choix); // Je vérifie qu'il est bien positif ici, si il ne l'est pas : passage par le catch et retour en haut du module
                 }
                 catch
                 {
-                    Console.WriteLine(cc.warnFlag + $" Attention la saisie doit être {cc.red}uniquement{cc.end} en nombre entier !");
+                    Console.WriteLine($"{cc.warnFlag} Attention la saisie doit être {cc.red}uniquement{cc.end} en nombre entier positif !");
                     choix = -22;
                 }
-            } while (choix < 0 || choix is int == false); // Si le choix n'est quand même pas un int la méthode recommence
+            } while (choix < 0); // Si le choix n'est quand même pas un int la méthode recommence
             return (int)choix;
         }
         static bool Premier(int nombre)
@@ -209,6 +251,53 @@ namespace Projet_Marwan_Kaouachi
 
             return bis;
         }
+        static int[] DemandeDate()
+        {
+            string saisie;
+            string[] datum;
+            int n, jour, mois, annee;
+            int[] TableauDate;
+            do
+            {
+                Console.WriteLine("\nSaisissez la date : (Sous la forme jj mm (aa)aa ou bien jj/mm/(aa)aa)");
+
+                saisie = Console.ReadLine();
+                datum = saisie.Split(' ', '/');
+
+                try
+                {
+                    n = Convert.ToInt32(saisie);
+                    if (n == 0 && saisie.Length <= 1)                                               // Si l'utilisateur ne saisis qu'un 0 il est renvoyé au menu
+                        Retour(); Console.Clear(); MenuB();
+
+                }
+                catch { }
+
+                try
+                {
+                    jour = Convert.ToInt32(datum[0]); // Je vérifie dans ces try catch que l'utilisateur n'as pas saisies de caractères incorects ou mal formatté la date */*
+                    mois = Convert.ToInt32(datum[1]);
+                    annee = Convert.ToInt32(datum[2]);
+                }
+                catch
+                {
+                    Console.WriteLine($"{cc.warnFlag} Le format de la date doit être {cc.bgRed}jj mm (aa)aa{cc.end} ou bien {cc.bgRed}jj/mm/(aa)aa{cc.end}");
+                    DemandeDate();
+                }
+
+                jour = Convert.ToInt32(datum[0]); // Si le try a fonctionné j'execute le même code pour mettre les valeurs dans les variables
+                mois = Convert.ToInt32(datum[1]);
+                annee = Convert.ToInt32(datum[2]);
+
+                TableauDate = new int[] { jour, mois, annee }; // Je stock la date dans un tableau pour la sortir de mon module en une seule variable
+
+                if (VerifDate(jour, mois, annee) == false)
+                    Console.WriteLine(cc.badVal);
+
+            } while (VerifDate(jour, mois, annee) == false);
+
+            return TableauDate;
+        }
         #endregion Outils
 
         #region Menus
@@ -217,14 +306,32 @@ namespace Projet_Marwan_Kaouachi
             int? choixA;
 
             //Console.Clear();
-            Console.WriteLine(@"  __  __                       _    
- |  \/  | ___ _ __  _   _     / \   
- | |\/| |/ _ \ '_ \| | | |   / _ \  
- | |  | |  __/ | | | |_| |  / ___ \ 
- |_|  |_|\___|_| |_|\__,_| /_/   \_\
-         by Marwan Kaouachi         ");
-            Console.WriteLine($"\n{cc.infoFlag} Utilisez 0 pour revenir au menu précédent.");
-            Console.WriteLine("\n1 : Vérifier si un nombre est Premier\n2 : Afficher la liste des nombres Premiers entre 2 bornes\n3 : Affiche le premier nombrPremier supérieur\n4 : Décomposer un nombre en produit de facteurs premiers\n5 : Palindrome ? Pas palindrome ! Palindrome ? Pas palindrome !\n6 : Affichage personnalisé");
+            Console.WriteLine(@$"
+╔═════════════════════════════════════╗
+║  __  __                       _     ║
+║ |  \/  | ___ _ __  _   _     / \    ║
+║ | |\/| |/ _ \ '_ \| | | |   / _ \   ║
+║ | |  | |  __/ | | | |_| |  / ___ \  ║  
+║ |_|  |_|\___|_| |_|\__,_| /_/   \_\ ║
+║                                     ║
+╠═════════════════════════════════════╩═════════════════════╗
+║{cc.retourZero} ║   
+╚═══════════════════════════════════════════════════════════╝");
+            Console.WriteLine("\n╔═══╦═════════════════════════════════════════════════════════════╗");
+            Console.WriteLine("║ 1 ║ Vérifier si un nombre est Premier                           ║");
+            Console.WriteLine("╠═══╬═════════════════════════════════════════════════════════════╣");
+            Console.WriteLine("║ 2 ║ Afficher la liste des nombres Premiers entre 2 bornes       ║");
+            Console.WriteLine("╠═══╬═════════════════════════════════════════════════════════════╣");
+            Console.WriteLine("║ 3 ║ Affiche le premier nombre Premier supérieur                 ║");
+            Console.WriteLine("╠═══╬═════════════════════════════════════════════════════════════╣");
+            Console.WriteLine("║ 4 ║ Décomposer un nombre en produit de facteurs premiers        ║");
+            Console.WriteLine("╠═══╬═════════════════════════════════════════════════════════════╣");
+            Console.WriteLine("║ 5 ║ Palindrome ? Pas palindrome ! Palindrome ? Pas palindrome ! ║");
+            Console.WriteLine("╠═══╬═════════════════════════════════════════════════════════════╣");
+            Console.WriteLine("║ 6 ║ Affichage personnalisé                                      ║");
+            Console.WriteLine("╚═══╩═════════════════════════════════════════════════════════════╝");
+
+            Console.WriteLine($"\n{cc.under}Choisissez un exercice parmis ceux ci-dessus :{cc.end}");
             choixA = DemandeNombre();
             
             switch (choixA)
@@ -271,14 +378,30 @@ namespace Projet_Marwan_Kaouachi
             int? choixB;
 
             //Console.Clear();
-            Console.WriteLine(@"  __  __                    ____  
- |  \/  | ___ _ __  _   _  | __ ) 
- | |\/| |/ _ \ '_ \| | | | |  _ \ 
- | |  | |  __/ | | | |_| | | |_) |
- |_|  |_|\___|_| |_|\__,_| |____/ 
-         by Marwan Kaouachi         ");
-            Console.WriteLine($"\n{cc.infoFlag} Utilisez 0 pour revenir au menu précédent.");
-            Console.WriteLine("\n1 : Calcul de la date du lendemain\n2 : Calcul du nombre de jours entre 2 dates\n3 : Vérifier si une date est bissextile\n4 : Calculer la date de pâques\n5 : Afficher le calendrier d'une année");
+            Console.WriteLine(@$"
+╔═══════════════════════════════════╗
+║  __  __                    ____   ║  
+║ |  \/  | ___ _ __  _   _  | __ )  ║  
+║ | |\/| |/ _ \ '_ \| | | | |  _ \  ║
+║ | |  | |  __/ | | | |_| | | |_) | ║
+║ |_|  |_|\___|_| |_|\__,_| |____/  ║
+║                                   ║
+╠═══════════════════════════════════╩═══════════════════════╗
+║{cc.retourZero} ║
+╚═══════════════════════════════════════════════════════════╝");
+            Console.WriteLine("\n╔═══╦═════════════════════════════════════════╗");
+            Console.WriteLine("║ 1 ║ Calcul de la date du lendemain          ║");
+            Console.WriteLine("╠═══╬═════════════════════════════════════════╣");
+            Console.WriteLine("║ 2 ║ Calcul du nombre de jours entre 2 dates ║");
+            Console.WriteLine("╠═══╬═════════════════════════════════════════╣");
+            Console.WriteLine("║ 3 ║ Vérifier si une date est bissextile     ║");
+            Console.WriteLine("╠═══╬═════════════════════════════════════════╣");
+            Console.WriteLine("║ 4 ║ Calculer la date de pâques              ║");
+            Console.WriteLine("╠═══╬═════════════════════════════════════════╣");
+            Console.WriteLine("║ 5 ║  Afficher le calendrier d'une année     ║");
+            Console.WriteLine("╚═══╩═════════════════════════════════════════╝");
+
+            Console.WriteLine($"\n{cc.under}Choisissez un exercice parmis ceux ci-dessus :{cc.end}");
             choixB = DemandeNombre();
 
             switch (choixB)
@@ -326,16 +449,19 @@ namespace Projet_Marwan_Kaouachi
         #region Partie_A
         static void AEX1()
         {
-            Console.WriteLine(@"
-  _______  ___ 
- | ____\ \/ / |
- |  _|  \  /| |
- | |___ /  \| |
- |_____/_/\_\_|
-        Vérifie si un nombre est Premier              
+            Console.WriteLine(@$"╔════════════════╗
+║  _______  ___  ║
+║ | ____\ \/ / | ║
+║ |  _|  \  /| | ║
+║ | |___ /  \| | ║
+║ |_____/_/\_\_| ║
+║     ┌──────────┴───────────────────────┐
+╚═════┤ Vérifie si un nombre est Premier │             
+┌─────┴──────────────────────────────────┴─────────────────┐
+│{cc.retourZero}│
+└──────────────────────────────────────────────────────────┘
 ");
-            Console.WriteLine($"{cc.infoFlag} (Utilisez 0 pour quitter et revenir au menu précédent)\n");
-            Console.WriteLine("Saisissez un nombre pour vérifier si il est Premier ou non:");
+            Console.WriteLine("\nSaisissez un nombre pour vérifier si il est Premier ou non:");
             int nombre;
             do
             {
@@ -363,15 +489,18 @@ namespace Projet_Marwan_Kaouachi
         }
         static void AEX2()
         {
-            Console.WriteLine(@"
-  _______  ______  
- | ____\ \/ /___ \ 
- |  _|  \  /  __) |
- | |___ /  \ / __/ 
- |_____/_/\_\_____|
-       Affiche la liste des nombres Premiers                    
+            Console.WriteLine(@$"╔════════════════════╗
+║  _______  ______   ║
+║ | ____\ \/ /___ \  ║
+║ |  _|  \  /  __) | ║
+║ | |___ /  \ / __/  ║
+║ |_____/_/\_\_____| ║
+║     ┌──────────────┴────────────────────────┐
+╚═════┤ Affiche la liste des nombres Premiers │             
+┌─────┴───────────────────────────────────────┴─────────────┐
+│{cc.retourZero} │
+└───────────────────────────────────────────────────────────┘
 ");
-            Console.WriteLine($"{cc.infoFlag} (Utilisez 0 dans les deux saisies pour quitter et revenir au menu précédent)\n");
             int mini;
             int maxi;
       
@@ -419,18 +548,25 @@ namespace Projet_Marwan_Kaouachi
         }
         static void AEX3()
         {
-            Console.WriteLine(@"  _______  _______ 
- | ____\ \/ /___ / 
- |  _|  \  /  |_ \ 
- | |___ /  \ ___) |
- |_____/_/\_\____/ 
-       Affiche le nombre premier supérieur            ");
-            Console.WriteLine($"{cc.infoFlag} (Utilisez 0 pour quitter et revenir au menu précédent)\n");
+            Console.WriteLine(@$"╔════════════════════╗
+║  _______  _______  ║
+║ | ____\ \/ /___ /  ║
+║ |  _|  \  /  |_ \  ║ 
+║ | |___ /  \ ___) | ║
+║ |_____/_/\_\____/  ║
+║     ┌──────────────┴──────────────────────┐
+╚═════┤ Affiche le nombre premier supérieur │             
+┌─────┴─────────────────────────────────────┴───────────────┐
+│{cc.retourZero} │
+└───────────────────────────────────────────────────────────┘
+       
+
+");
 
             int nombre;
             do
             {
-                Console.WriteLine("\nSaisissez un nombre pour afficher le nombre Premier supérieur à celui-ci:");
+                Console.WriteLine("Saisissez un nombre pour afficher le nombre Premier supérieur à celui-ci:");
                 nombre = DemandeNombre();
                 int i = nombre;
 
@@ -450,12 +586,18 @@ namespace Projet_Marwan_Kaouachi
         }
         static void AEX4()
         {
-            Console.WriteLine(@"  _______  ___  _   
- | ____\ \/ / || |  
- |  _|  \  /| || |_ 
- | |___ /  \|__   _|
- |_____/_/\_\  |_|  
-       Décompose en produit de facteurs premier             ");
+            Console.WriteLine(@$"╔═════════════════════╗
+║  _______  ___  _    ║
+║ | ____\ \/ / || |   ║
+║ |  _|  \  /| || |_  ║
+║ | |___ /  \|__   _| ║
+║ |_____/_/\_\  |_|   ║
+║     ┌───────────────┴──────────────────────────┐
+╚═════┤ Décompose en produit de facteurs premier │  
+┌─────┴──────────────────────────────────────────┴──────────┐
+│{cc.retourZero} │
+└───────────────────────────────────────────────────────────┘
+");
             int nombre, n;
             bool z;
 
@@ -465,7 +607,9 @@ namespace Projet_Marwan_Kaouachi
                 string ligne = "";
 
                 Console.WriteLine("Saisissez un nombre à décomposer en produit de facteurs premiers:");
+                
                 n = nombre = DemandeNombre();
+                
                 z = n != 0;
 
                 #region Essai_1
@@ -534,7 +678,7 @@ namespace Projet_Marwan_Kaouachi
                             n /= prem;
                             cpt++;
 
-                            //Console.WriteLine("facteur trouvé " + prem);
+                            //Console.WriteLine("facteur trouvé " + prem); // Pour voir le détail retirer ces commentaires
                             //Console.WriteLine(cpt);
                         }
 
@@ -558,7 +702,6 @@ namespace Projet_Marwan_Kaouachi
                     Console.WriteLine($"Après décomposition : {cc.cyan}{nombre}{cc.end} = {cc.cyan}{ligne}{cc.end}");
                 }
                 
-
             } while (z != false);
 
             Retour();
@@ -566,15 +709,27 @@ namespace Projet_Marwan_Kaouachi
         }
         static void AEX5()
         {
-            Console.WriteLine(@"  _______  ______  
- | ____\ \/ / ___| 
- |  _|  \  /|___ \ 
- | |___ /  \ ___) |
- |_____/_/\_\____/ 
-       Palindrome ? Pas palindrome ?            ");
+            Console.WriteLine(@$"╔════════════════════╗
+║  _______  ______   ║
+║ | ____\ \/ / ___|  ║
+║ |  _|  \  /|___ \  ║
+║ | |___ /  \ ___) | ║
+║ |_____/_/\_\____/  ║
+║     ┌──────────────┴────────────────┐
+╚═════┤ Palindrome ? Pas palindrome ? │  
+┌─────┴───────────────────────────────┴─────────────────────┐
+│{cc.retourZero} │
+└───────────────────────────────────────────────────────────┘
+");
+            Console.WriteLine("\n╔═══╦═════════════════════════════════════════════════════════════════════╗");
+            Console.WriteLine($"║ 1 ║ Affichage des nombres palindromes inférieur à {cc.green}1000{cc.end}                  ║");
+            Console.WriteLine("╠═══╬═══════╦═════════════════════════════════════════════════════════════╣");
+            Console.WriteLine($"║ 2 ║ {cc.green}Bonus{cc.end} ║ Affichage des nombres {cc.cyan}premiers{cc.end} palindromes inférieur à {cc.green}1000{cc.end} ║");
+            Console.WriteLine("╠═══╬═══════╬═════════════════════════════════════════════════════════════╣");
+            Console.WriteLine($"║ 3 ║ {cc.green}Bonus{cc.end} ║ Vérification si un nombre lambda est palindrome ou non      ║");
+            Console.WriteLine("╚═══╩═══════╩═════════════════════════════════════════════════════════════╝");
 
-            Console.WriteLine($"\n0 : Revenir au menu précédent\n1 : Affichage des nombres palindromes inférieur à {cc.green}1000{cc.end}\n2 : Bonus, Affichage des nombres {cc.cyan}premiers{cc.end} palindromes inférieur à {cc.green}1000{cc.end}\n3 : {cc.infoFlag} Bonus v2, vérification si un nombre unique est palindrome ou non\n");
-
+            Console.WriteLine($"\n{cc.under}Choisissez une option parmis celles ci-dessus :{cc.end}");
             int choixAEX5 = DemandeNombre();
 
             switch (choixAEX5)
@@ -596,12 +751,19 @@ namespace Projet_Marwan_Kaouachi
                     AEX5();
                     break;
                 case 3:
-                    int n = DemandeNombre();
+                    int n;
+                    do
+                    {
+                        Console.WriteLine("\nSaisissez le nombre à tester :");
+                        n = DemandeNombre();
+                        if (n == 0)
+                            break;
+                        if (n.ToString().SequenceEqual(n.ToString().Reverse()))
+                            Console.WriteLine($"{cc.cyan}{n}{cc.end} {cc.green}est bien{cc.end} un nombre palindrome");
+                        else
+                            Console.WriteLine($"{cc.cyan}{n}{cc.end} {cc.red}n'est pas{cc.end} un nombre palindrome");
+                    } while (n != 0);
 
-                    if (n.ToString().SequenceEqual(n.ToString().Reverse()))
-                        Console.WriteLine($"{cc.cyan}{n}{cc.end} {cc.green}est bien{cc.end} un nombre palindrome");
-                    else
-                        Console.WriteLine($"{cc.cyan}{n}{cc.end} {cc.red}n'est pas{cc.end} un nombre palindrome");
                     Retour();
                     AEX5();
                     break;
@@ -645,15 +807,35 @@ namespace Projet_Marwan_Kaouachi
         }
         static void AEX6()
         {
-            Console.WriteLine(@"  _______  ____   
- | ____\ \/ / /_  
- |  _|  \  / '_ \ 
- | |___ /  \ (_) |
- |_____/_/\_\___/ 
-       Affichage personnalisé           ");
+            Console.WriteLine(@$"╔═══════════════════╗
+║  _______  ____    ║
+║ | ____\ \/ / /_   ║
+║ |  _|  \  / '_ \  ║
+║ | |___ /  \ (_) | ║
+║ |_____/_/\_\___/  ║
+║     ┌─────────────┴───────────┐
+╚═════┤  Affichage personnalisé │  
+┌─────┴─────────────────────────┴───────────────────────────┐
+│{cc.retourZero} │
+└───────────────────────────────────────────────────────────┘");
 
-            Console.WriteLine("\n0 : Revenir au menu précédent\n1 : Carré plein\n2 : Rectangle Plein\n3 : Carré Creux\n4 : Rectangle Creux\n5 : Damier\n6 : Triangle\n7 : Triangle inversé");
+            Console.WriteLine("\n╔═══╦══════════════════╗");
+            Console.WriteLine("║ 1 ║ Carré plein      ║");
+            Console.WriteLine("╠═══╬══════════════════╣");
+            Console.WriteLine("║ 2 ║ Rectangle Plein  ║");
+            Console.WriteLine("╠═══╬══════════════════╣");
+            Console.WriteLine("║ 3 ║ Carré Creux      ║");
+            Console.WriteLine("╠═══╬══════════════════╣");
+            Console.WriteLine("║ 4 ║ Rectangle Creux  ║");
+            Console.WriteLine("╠═══╬══════════════════╣");
+            Console.WriteLine("║ 5 ║ Damier           ║");
+            Console.WriteLine("╠═══╬══════════════════╣");
+            Console.WriteLine("║ 6 ║ Triangle         ║");
+            Console.WriteLine("╠═══╬══════════════════╣");
+            Console.WriteLine("║ 7 ║ Triangle inversé ║");
+            Console.WriteLine("╚═══╩══════════════════╝");
 
+            Console.WriteLine($"\n{cc.under}Choisissez une option parmis celles ci-dessus :{cc.end}");
             int choixAEX6 = DemandeNombre();
             int taille;
             char carac;
@@ -869,19 +1051,22 @@ namespace Projet_Marwan_Kaouachi
             int n, jour, mois, annee, j, m, a, nextlap = -1;
             bool newlap = false;
 
-            Console.WriteLine(@"
-  _______  ___ 
- | ____\ \/ / |
- |  _|  \  /| |
- | |___ /  \| |
- |_____/_/\_\_|
-       Calcul la date du lendemain              
+            Console.WriteLine(@$"╔════════════════╗
+║  _______  ___  ║
+║ | ____\ \/ / | ║ 
+║ |  _|  \  /| | ║ 
+║ | |___ /  \| | ║ 
+║ |_____/_/\_\_| ║
+║     ┌──────────┴──────────────────┐
+╚═════┤ Calcul la date du lendemain │             
+┌─────┴─────────────────────────────┴──────────────────────┐
+│{cc.retourZero}│
+└──────────────────────────────────────────────────────────┘
 ");
-            Console.WriteLine($"\n{cc.infoFlag} Utilisez 0 pour revenir au menu précédent.");
 
             do
             {
-                Console.WriteLine("\nSaisissez la date dont vous voulez connaître le lendemain : (Sous la forme jj mm aaa ou bien jj/mm/aaaa)");
+                Console.WriteLine("Saisissez la date dont vous voulez connaître le lendemain : (Sous la forme jj mm aaa ou bien jj/mm/aaaa)");
 
                 saisie = Console.ReadLine();
                 datum = saisie.Split(' ' , '/');                                                          // Je met dans un tableau tous les éléments qui sont séparé par un espace dans la string saisie
@@ -913,7 +1098,7 @@ namespace Projet_Marwan_Kaouachi
 
                     //Console.WriteLine(VerifDate(jour, mois, annee)); // test
 
-                    #region Lendemain
+                    #region Lendemain_calcul
                     jour++;
 
                     if (jour > 28 && mois == 2 && Bissextile(annee) == false)                    // Cas 28 Février
@@ -942,7 +1127,7 @@ namespace Projet_Marwan_Kaouachi
                         mois = 1;
                         annee++;
                     }
-                    #endregion Lendemain
+                    #endregion Lendemain_calcul
 
                     Console.WriteLine($"Le lendemain de {cc.cyan}{j}{cc.end}/{cc.cyan}{m}{cc.end}/{cc.cyan}{a}{cc.end} est le {cc.cyan}{jour}{cc.end}/{cc.cyan}{mois}{cc.end}/{cc.cyan}{annee}{cc.end}.");
 
@@ -975,15 +1160,18 @@ namespace Projet_Marwan_Kaouachi
             int n, jour, jour2, j, mois, mois2, m, annee, annee2, a, cpt = 1, nextlap = 1;
             bool newlap = false;
 
-            Console.WriteLine(@"
-  _______  ______  
- | ____\ \/ /___ \ 
- |  _|  \  /  __) |
- | |___ /  \ / __/ 
- |_____/_/\_\_____|
-       Calcul du nombre de jours entre 2 dates                    
+            Console.WriteLine(@$"╔════════════════════╗
+║  _______  ______   ║
+║ | ____\ \/ /___ \  ║
+║ |  _|  \  /  __) | ║
+║ | |___ /  \ / __/  ║
+║ |_____/_/\_\_____| ║
+║     ┌──────────────┴──────────────────────────┐
+╚═════┤ Calcul du nombre de jours entre 2 dates │             
+┌─────┴─────────────────────────────────────────┴──────────┐
+│{cc.retourZero}│
+└──────────────────────────────────────────────────────────┘
 ");
-            Console.WriteLine($"\n{cc.infoFlag} Utilisez 0 pour revenir au menu précédent.");
 
             do
             {
@@ -1118,7 +1306,7 @@ namespace Projet_Marwan_Kaouachi
                         jour = 1;
                         mois++;
                     }
-                    else if (jour == 31 && mois == 4 || jour == 31 && mois == 6 || jour == 31 &&  mois == 9 || jour == 31 && mois == 12)   // Cas des mois à 30 jours
+                    else if (jour == 31 && mois == 4 || jour == 31 && mois == 6 || jour == 31 &&  mois == 9 || jour == 31 && mois == 12)   // Cas des mois à 30 jours // Erreur idiote j'ai oublié les "|| jour == 31 &&"
                     {
                         jour = 1;
                         mois++;
@@ -1141,6 +1329,7 @@ namespace Projet_Marwan_Kaouachi
                 #region Algo_auto
                 DateTime date1 = new DateTime(annee, mois, jour);
                 DateTime date2 = new DateTime(annee2, mois2, jour2);
+
 
                 TimeSpan T = date2 - date1;
                 #endregion Algo_auto
@@ -1167,15 +1356,224 @@ namespace Projet_Marwan_Kaouachi
         }
         static void BEX3()
         {
+            Console.WriteLine(@$"╔════════════════════╗
+║  _______  _______  ║
+║ | ____\ \/ /___ /  ║
+║ |  _|  \  /  |_ \  ║
+║ | |___ /  \ ___) | ║
+║ |_____/_/\_\____/  ║
+║     ┌──────────────┴───────────────────────┐
+╚═════┤ Vérifier si une année est bissextile │             
+┌─────┴──────────────────────────────────────┴─────────────┐
+│{cc.retourZero}│
+└──────────────────────────────────────────────────────────┘
+");
+            Console.WriteLine("Saisissez l'année que vous voulez tester :");
+            int jour, mois, annee;
+            do
+            {
+                int[] saisie = DemandeDate();                                                                       // Récupération et assignation de chaque partie de la date socké dans le tableau renvoyé par DemandeDate();
+                jour = saisie[0];
+                mois = saisie[1];
+                annee = saisie[2];
 
+                if (Bissextile(annee) == true)                                                                      // Traitement de l'année
+                {
+                    Console.WriteLine($"{cc.cyan}{annee}{cc.end} {cc.green}est bien{cc.end} une année bissextile");
+                } else
+                {
+                    Console.WriteLine($"{cc.cyan}{annee}{cc.end} {cc.red}n'est pas{cc.end} une année bissextile");
+                }
+            } while (jour != 0);
+            Retour();
+            MenuB();
         }
         static void BEX4()
         {
+            Console.WriteLine(@$"╔═════════════════════╗
+║  _______  ___  _    ║
+║ | ____\ \/ / || |   ║
+║ |  _|  \  /| || |_  ║
+║ | |___ /  \|__   _| ║
+║ |_____/_/\_\  |_|   ║
+║     ┌───────────────┴────────────┐
+╚═════┤ Calculer la date de Pâques │             
+┌─────┴────────────────────────────┴───────────────────────┐
+│{cc.retourZero}│
+└──────────────────────────────────────────────────────────┘
+");
 
+            Console.WriteLine("╔═══╦══════════════════════╗");
+            Console.WriteLine("║ 1 ║ Algorithme de Gauss  ║");
+            Console.WriteLine("╠═══╬══════════════════════╣");
+            Console.WriteLine("║ 2 ║ Algorithme de Meeus  ║");
+            Console.WriteLine("╠═══╬══════════════════════╣");
+            Console.WriteLine("║ 3 ║ Algorithme de Conway ║");
+            Console.WriteLine("╚═══╩══════════════════════╝");
+
+            Console.WriteLine($"\n{cc.under}Choisissez l'algorithme que vous souhaitez tester :{cc.end}");
+            int choixBEX4 = DemandeNombre();
+
+            switch (choixBEX4)
+            {
+                case 0:
+                    Retour();//Console.Clear();
+                    MenuB();
+                    break;
+                case 1:
+                    Console.Clear();
+                    AlgoGauss();
+                    break;
+                case 2:
+                    Console.Clear();
+                    AlgoMeeus();
+                    break;
+                case 3:
+                    Console.Clear();
+                    AlgoConway();
+                    break;
+
+                default:
+                    Console.Clear();
+                    Console.WriteLine(cc.badVal);
+                    BEX4();
+                    break;
+            }
+
+            static void AlgoGauss()
+            {
+                bool quit = false;
+
+                Console.WriteLine(@$"
+╔══════════════════════════════════════════════════════════════════╗
+║     _    _                   _         ____                      ║
+║    / \  | | __ _  ___     __| | ___   / ___| __ _ _   _ ___ ___  ║
+║   / _ \ | |/ _` |/ _ \   / _` |/ _ \ | |  _ / _` | | | / __/ __| ║
+║  / ___ \| | (_| | (_) | | (_| |  __/ | |_| | (_| | |_| \__ \__ \ ║
+║ /_/   \_\_|\__, |\___/   \__,_|\___|  \____|\__,_|\__,_|___/___/ ║
+║            |___/                                                 ║
+╠═══════════════════════════════════════════════════════════╦══════╝
+║{cc.retourZero} ║
+╚═══════════════════════════════════════════════════════════╝
+");
+                do
+                {
+                    Console.WriteLine($"{cc.under}Saisissez l'année dont vous voulez calculer la date de Pâques avec l'algorithme de Gauss :{cc.end} (sous la forme aaaa)");
+                    uint year; // uint pour que la valeur ne puisse pas être négative
+
+                    do
+                    {
+                        string saisie = Console.ReadLine();
+
+                        try
+                        {
+                            year = Convert.ToUInt32(saisie);
+                        }
+                        catch
+                        {
+                            Console.Clear();
+                            Console.WriteLine(cc.badVal + $" Veillez à ce que l'année sois {cc.red}entière et positive{cc.end}.");
+                            AlgoGauss();                    // Recommence si la conversion échoue
+                        }
+
+                        year = Convert.ToUInt32(saisie);
+                        if (year == 0)
+                        {
+                            quit = true;
+                            Retour();
+                            BEX4();
+                        }
+                        else if (year < 1583)
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"{cc.warnFlag} Le calendrier Grégorien ne commence qu'en 1583, veuillez réessayer"); // Message d'erreur et d'avertissement
+                            AlgoGauss();
+                        }
+                    } while (year < 1583);
+
+                    int annee = Convert.ToInt32(year);
+
+                    int a = annee % 19;         // Écris à l'aide des explications disponible sur Wikipédia : https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques_selon_la_m%C3%A9thode_de_Gauss
+                    int b = annee % 4;          // À l'identique parce que je me perdrais si je changeais les variables.                                
+                    int c = annee % 7;                                      
+                    int k = annee / 100;                                    
+                    int p = (13 + 8 * k) / 25;                              
+                    int q = k / 4;                                          
+                    int M = (15 - p + k - q) % 30;                          
+                    int N = (4 + k - q) % 7;                                      
+                    int d = (19 * a + M) % 30;                                  
+                    int e = (2 * b + 4 * c + 6 * d + N) % 7;            
+                    int H = 22 + d + e;                                 
+                    int Q = H - 31;                                     
+                    int R = (11 * M + 11) % 30;
+
+                    if (d == 29 && e == 9)                                                          
+                        Q = 19;                                                                     
+                    if (d == 28 && e == 6 && R < 19)                                           
+                        Q = 18;                                                                                     
+                    if (H < 32)                                                                                 
+                        Console.WriteLine($"En {cc.cyan}{annee}{cc.end} la date de Pâques est le {cc.cyan}dimanche {H} mars{cc.end}.");                 
+                    if (H > 32)                                                        
+                        Console.WriteLine($"En {cc.cyan}{annee}{cc.end} la date de Pâques est le {cc.cyan}dimanche {Q} avril{cc.end}.");                                         
+                                            
+                } while (quit != true);
+            }
+            static void AlgoMeeus()
+            {
+
+                Console.WriteLine(@$"
+╔═══════════════════════════════════════════════════════════════════╗
+║     _    _                   _        __  __                      ║
+║    / \  | | __ _  ___     __| | ___  |  \/  | ___  ___ _   _ ___  ║
+║   / _ \ | |/ _` |/ _ \   / _` |/ _ \ | |\/| |/ _ \/ _ \ | | / __| ║
+║  / ___ \| | (_| | (_) | | (_| |  __/ | |  | |  __/  __/ |_| \__ \ ║
+║ /_/   \_\_|\__, |\___/   \__,_|\___| |_|  |_|\___|\___|\__,_|___/ ║
+║            |___/                                                  ║
+╠═══════════════════════════════════════════════════════════╦═══════╝
+║{cc.retourZero} ║
+╚═══════════════════════════════════════════════════════════╝
+");
+
+                Retour();
+                BEX4();
+            }
+            static void AlgoConway()
+            {
+
+                Console.WriteLine(@$"
+╔════════════════════════════════════════════════════════════════════════════╗
+║     _    _                   _         ____                                ║
+║    / \  | | __ _  ___     __| | ___   / ___|___  _ ____      ____ _ _   _  ║
+║   / _ \ | |/ _` |/ _ \   / _` |/ _ \ | |   / _ \| '_ \ \ /\ / / _` | | | | ║
+║  / ___ \| | (_| | (_) | | (_| |  __/ | |__| (_) | | | \ V  V / (_| | |_| | ║
+║ /_/   \_\_|\__, |\___/   \__,_|\___|  \____\___/|_| |_|\_/\_/ \__,_|\__, | ║
+║            |___/                                                    |___/  ║
+╠═══════════════════════════════════════════════════════════╦════════════════╝
+║{cc.retourZero} ║
+╚═══════════════════════════════════════════════════════════╝
+");
+
+                Retour();
+                BEX4();
+            }
         }
         static void BEX5()
         {
+            Console.WriteLine(@$"╔════════════════════╗
+║  _______  ______   ║
+║ | ____\ \/ / ___|  ║
+║ |  _|  \  /|___ \  ║
+║ | |___ /  \ ___) | ║
+║ |_____/_/\_\____/  ║
+║     ┌──────────────┴────────────────┐
+╚═════┤ Calendrier complet de l'année │  
+┌─────┴───────────────────────────────┴─────────────────────┐
+│{cc.retourZero} │
+└───────────────────────────────────────────────────────────┘
+");
 
+            Retour();
+            MenuB();
         }
         #endregion Partie_B
     }
