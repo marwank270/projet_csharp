@@ -379,7 +379,6 @@ namespace Projet_Marwan_Kaouachi
         {
             int? choixB;
 
-            //Console.Clear();
             Console.WriteLine(@$"
 ╔═══════════════════════════════════╗
 ║  __  __                    ____   ║  
@@ -444,7 +443,51 @@ namespace Projet_Marwan_Kaouachi
         }
         static void MenuC()
         {
+            int? choixC;
 
+            Console.WriteLine($@"
+╔═══════════════════════════════════╗
+║  __  __                     ____  ║
+║ |  \/  | ___ _ __  _   _   / ___| ║
+║ | |\/| |/ _ \ '_ \| | | | | |     ║
+║ | |  | |  __/ | | | |_| | | |___  ║
+║ |_|  |_|\___|_| |_|\__,_|  \____| ║
+║                                   ║
+╠═══════════════════════════════════╩═══════════════════════╗
+║{cc.retourZero} ║
+╚═══════════════════════════════════════════════════════════╝");
+
+            Console.WriteLine("\n╔═══╦═══════╦═════════════════════════════════════════╗");
+            Console.WriteLine("║ 1 ║ Ncode ║ Menu d'encodage de chaîne de caractère  ║");
+            Console.WriteLine("╠═══╬═══════╬═════════════════════════════════════════╣");
+            Console.WriteLine("║ 2 ║ Dcode ║ Menu de décodage de chaîne de caractère ║");
+            Console.WriteLine("╚═══╩═══════╩═════════════════════════════════════════╝");
+
+            Console.WriteLine($"\n{cc.under}Choisissez un menu parmis ceux ci-dessus :{cc.end}");
+            choixC = DemandeNombre();
+
+            switch (choixC)
+            {
+                case 0:
+                    Console.Clear();
+                    Main();
+                    break;
+
+                case 1:
+                    Console.Clear();
+                    Ncode();
+                    break;
+                case 2:
+                    Console.Clear();
+                    Dcode();
+                    break;
+
+                default:
+                    Console.Clear();
+                    Console.WriteLine(cc.badVal);
+                    MenuB();
+                    break;
+            }
         }
         #endregion Menus
 
@@ -1593,7 +1636,7 @@ namespace Projet_Marwan_Kaouachi
                     }
 
                 } while (quit != true);*/
-                #endregion Essai_2
+                #endregion Essai_1
 
                 do
                 {
@@ -1716,18 +1759,17 @@ namespace Projet_Marwan_Kaouachi
 
                     int t = annee % 100;
                     int s = annee / 100;
+                    int g = annee % 19;
                     int a = (t / 4);
                     int p = s % 4;
                     int jps = (9 - 2 * p) % 7;
                     int jp = (jps + t + a) % 7;
-                    int g = annee % 19;
-                    int Gg = g + 1;
+                    int G = g + 1;
                     int b = (s / 4);
                     int r = 8 * (s + 11) / 25;
                     int C = -s + b + r;
-                    int d = (11 * Gg + C) % 30;
-                    d = (d + 30) % 30;
-                    int h = (551 - 19 * d + Gg) / 544;
+                    int d = (11 * G + C) % 30; d = (d + 30) % 30;
+                    int h = (551 - 19 * d + G) / 544;
                     int e = (50 - d - h) % 7;
                     int f = (e + jp) % 7;
                     int R = 57 - d - f - h;
@@ -1762,51 +1804,50 @@ namespace Projet_Marwan_Kaouachi
 │{cc.retourZero} │
 └───────────────────────────────────────────────────────────┘
 ");
-
-            
             
             string saisie;
-            string[] semaine = { "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche" };
             uint year, day_week;
-            int annee, jour_sem = 0;
+            int annee, jour_sem;
             bool quit = false;
             do
             {
+                string cote = "\t║  ", aftermonth = "╚══════════════════════════════╝";
+                int jour_mois = 0;                                              // Nombre de jours dans le mois (calculé plus bas)
+                string sem = $"{cc.under}Lu{cc.end}  {cc.under}Ma{cc.end}  {cc.under}Me{cc.end}  {cc.under}Je{cc.end}  {cc.under}Ve{cc.end}  {cc.under}Sa{cc.end}  {cc.under}Di{cc.end}";
+
                 Console.WriteLine($"{cc.under}Saisissez l'année dont vous voulez voir le calendrier :{cc.end}");
-                bool bis;
+                
                 #region Saisie_année
                 do
                 {
                     saisie = Console.ReadLine();
                     try
                     {
-                        year = Convert.ToUInt32(saisie);    // Test de conversion de en UInt
+                        year = Convert.ToUInt32(saisie);                        // Test de conversion de en UInt
                     } catch
                     {
                         Console.Clear();
                         Console.WriteLine($"{cc.badVal} Veillez à ce que l'année sois {cc.red}entière et positive{cc.end}.");
                         BEX5();               
                     }
-                    //annee = Convert.ToInt32(year);        // Variable non déclaré dans la boucles
-                    annee = Convert.ToInt32(saisie);        // Conversion réussie dans le try donc je l'assigne ici
+                    //annee = Convert.ToInt32(year);                            // Variable non déclaré dans la boucles
+                    annee = Convert.ToInt32(saisie);                            // Conversion réussie dans le try donc je l'assigne ici
 
-                    if (annee == 0)
+                    if (annee == 0)                                             // Si l'utilisateur saisi 0 je le renvoi au menu
                     {
-                        quit = true;
+                        quit = true;                                            // Cette valeur sers à savoir si la boucle doit ne pas continuer /*/
                         Retour();
-                        BEX5();
+                        MenuB();
                     }
                     else if (annee < 1583)
                     {
                         Console.Clear();
                         Console.WriteLine($"{cc.warnFlag} Le calendrier Grégorien ne commence qu'en 1583, veuillez réessayer"); // Message d'erreur et d'avertissement
                         BEX5();
-                    } else
-                    {
-                        bis = Bissextile(annee);
                     }
                 } while (annee < 1583);
                 #endregion Saisie_année
+                #region Saisie_jour
                 do
                 {
                     Console.WriteLine($"{cc.under}Indiquez par quel jours l'année commence :{cc.end} (1 : Lundi, 2 : Mardi, 3 : Mercredi, 4 : Jeudi, 5 : Vendredi, 6 : Samedi, 7 : Dimanche)");
@@ -1825,41 +1866,187 @@ namespace Projet_Marwan_Kaouachi
                     {
                         quit = true;
                         Retour();
-                        BEX5();
+                        MenuB();
 
                     }
                 } while (jour_sem >= 6 && jour_sem <= 0);
+                #endregion Saisie_jour
+                /*int origLarg = Console.WindowWidth;
+                int origHaut = Console.WindowHeight;
+                int larg = origLarg - 90; // 120 => 30
+                int haut = origHaut + 98;  // 32 => 130
+                
+                Console.SetBufferSize(larg, haut);                            // Je voulais changer la taille de lma fenêtre mais c'est plus compliqué que prévu quand le programme est déjà en cours
+                Console.SetWindowSize(larg, haut);*/
 
-                switch (jour_sem)
+                Console.Clear();
+                Console.WriteLine(@$"╔══════════════════════════════════════════════════╗
+║   ____      _                _      _            ║
+║  / ___|__ _| | ___ _ __   __| |_ __(_) ___ _ __  ║
+║ | |   / _` | |/ _ \ '_ \ / _` | '__| |/ _ \ '__| ║
+║ | |__| (_| | |  __/ | | | (_| | |  | |  __/ |    ║
+║  \____\__,_|_|\___|_| |_|\__,_|_|  |_|\___|_|    ║
+╚══════════════════╦════════╦══════════════════════╝
+                   │  {annee}  │
+                   └────────┘");
+
+                bool bis = Bissextile(annee);
+                int num_mois = 0, num_carac = 0, num_jour = 1;
+                string[] titre_mois = {" Janvier  ", " Février  ", "   Mars   ", "  Avril   ", "   Mai    ", "   Juin   ", " Juillet  ", "   Août   ", "Septembre ", " Novembre ", " Décembre "};
+
+                for (int i = 1; i != 12; i++)
                 {
-                    case 1:
-                        Console.WriteLine(semaine[0]);
-                        break;
-                    case 2:
-                        Console.WriteLine(semaine[1]);
-                        break;
-                    case 3:
-                        Console.WriteLine(semaine[2]);
-                        break;
-                    case 4:
-                        Console.WriteLine(semaine[3]);
-                        break;
-                    case 5:
-                        Console.WriteLine(semaine[4]);
-                        break;
-                    case 6:
-                        Console.WriteLine(semaine[5]);
-                        break;
-                    case 7:
-                        Console.WriteLine(semaine[6]);
-                        break;
-                }
+                    Console.WriteLine($"\n\n\t╔═════════┤{cc.cyan}{titre_mois[num_mois]}{cc.end}├═════════╗");   
+                                                                                // Cette ligne me sers a définir la ligne ou sera affiché le titre et va m'être utile pour moduler mon affichage
+                    Console.WriteLine($"{cote}{sem}  ║");                       // Affichage de la ligne de des jours de la semaine
 
+                    if (num_mois == 0 || num_mois == 2 || num_mois == 4 || num_mois == 6 || num_mois == 7 || num_mois == 9 || num_mois == 11)     // Mois de 31 jours (-1 a chaques mois car le tableau commence à 0 
+                        jour_mois = 31;                                         // Jours par mois : 31 // Le nombre de jours dans les mois concernés
+
+                    else if (num_mois == 3 || num_mois == 5 || num_mois == 8 || num_mois == 10)
+                        jour_mois = 30;                                         // Jours par mois : 30
+
+                    else if (num_mois == 1)                                     // Le cas de Février
+                        if (bis == true)
+                            jour_mois = 29;
+                        else
+                            jour_mois = 28;
+
+                    Console.Write(cote);                                        // J'éloigne du bord la zone ou je vais écrire
+                    num_carac = 0;                                              // Je remet le compteur de caractère à 0 pour pouvoir recommencer à les compter et mettre les retours à ligne ou il faut
+
+                    // Affiche les points avant le début du mois dans la semaine concerné
+                    if (jour_sem == 8)                                          // Si le 31 est un dimanche pas besoin de points puisque le 1 sera un lundi
+                    {
+                        
+                    } else
+                    {
+                        for (int j = 1; j != jour_sem; j++)
+                        {
+                            Console.Write(" .  ");                              // .Write pour ne pas retourner à la ligne
+                            num_carac += 1;                                     // Je compte les caractères pour tout agencer correctement 
+                        }
+                    }
+
+                    // Écriture des numéro du mois
+                    for (num_jour = 1; num_jour <= jour_mois; num_jour++)
+                    {
+                        if (num_carac >= 7)                                     // Une fois 7 caractère inscrit, la ligne est complète
+                        {
+                            Console.Write($"║\n{cote}");
+                            num_carac = 0;
+                        }
+                        if (num_jour < 10)
+                        {
+                            Console.Write($" {num_jour}  ");                    // Les chiffres ne font qu'un caractère donc je leurs met un espace en plus
+                            num_carac += 1;
+                        } else if (num_jour > 10 && num_jour <= jour_mois)
+                        {
+                            Console.Write($"{num_jour}  ");
+                            num_carac += 1;
+
+                            // Dans ce if je complète les espaces vides après le 31 par des '.'
+                            if (num_jour == jour_mois)
+                            {
+                                switch (num_carac) {
+                                    case 0:
+                                        for (int k = 0; k <= 6; k++)
+                                        {
+                                            Console.Write(" .  ");
+                                        }
+                                        break;
+                                    case 1:
+                                        for (int k = 1; k <= 6; k++)
+                                        {
+                                            Console.Write(" .  ");
+                                        }
+                                        break;
+                                    case 2:
+                                        for (int k = 2; k <= 6; k++)
+                                        {
+                                            Console.Write(" .  ");
+                                        }
+                                        break;
+                                    case 3:
+                                        for (int k = 3; k <= 6; k++)
+                                        {
+                                            Console.Write(" .  ");
+                                        }
+                                        break;
+                                    case 4:
+                                        for (int k = 4; k <= 6; k++)
+                                        {
+                                            Console.Write(" .  ");
+                                        }
+                                        break;
+                                    case 5:
+                                        for (int k = 5; k <= 6; k++)
+                                        {
+                                            Console.Write(" .  ");
+                                        }
+                                        break;
+                                    case 6:
+                                        for (int k = 6; k <= 6; k++)
+                                        {
+                                            Console.Write(" .  ");
+                                        }
+                                        break;
+                                    /*case 7:
+                                        for (int k = 7; k <= 6; k++)
+                                        {
+                                            Console.Write(" .  ");
+                                        }
+                                        break;*/
+                                }
+                                Console.Write($"║\n\t{aftermonth}");
+                            }
+                        }
+                        jour_sem = num_carac + 1;                               // Grâce à ça je peux réaligner les jours avec les numéros (si le 31 Janvier est un vendredi, le 1 Février s'affiche sous Mardi
+                    }
+
+                    num_mois++; // J'incrémente le numéro du mois pour passer au suivant
+                }
+                Console.WriteLine("");
+                Retour();
             } while (quit != true);
 
             Retour();
             MenuB();
         }
         #endregion Partie_B
+
+        #region Partie_C
+        static void Ncode()
+        {
+            int? choixN;
+            Console.WriteLine($@"╔══════════════════════════════╗
+║  _   _               _       ║
+║ | \ | | ___ ___   __| | ___  ║
+║ |  \| |/ __/ _ \ / _` |/ _ \ ║
+║ | |\  | (_| (_) | (_| |  __/ ║
+║ |_| \_|\___\___/ \__,_|\___| ║
+║         ┌────────────────────┴──┐
+╚═════════┤ Encodage Binaire Hexa │             
+┌─────────┴───────────────────────┴────────────────────────┐
+│{cc.retourZero}│
+└──────────────────────────────────────────────────────────┘");
+
+            Console.WriteLine("╔═══╦══════════════════════╗");
+            Console.WriteLine("║ 1 ║ Algorithme de Gauss  ║");
+            Console.WriteLine("╠═══╬══════════════════════╣");
+            Console.WriteLine("║ 2 ║ Algorithme de Meeus  ║");
+            Console.WriteLine("╠═══╬══════════════════════╣");
+            Console.WriteLine("║ 3 ║ Algorithme de Conway ║");
+            Console.WriteLine("╚═══╩══════════════════════╝");
+        }
+        static void Dcode()
+        {
+
+        }
+        static void ASCII()
+        {
+
+        }
+        #endregion Partie_C
     }
 }
