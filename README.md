@@ -59,5 +59,10 @@
     - Exercice 4 terminé, les deux autres algos étaient un peu plus dur mais pas infaisable (merci wikipédia pour les tableaux)
     - Exercice 5 débuté, je sais pas trop vers ou orienter mon développement mais j'avance assez bien même doucement
   - Optimisation: Révision de quelques parties de code de ma Partie B
+
+# 29/12/21:
+  - Finition de la Partie B:
+    - Exercice 5 terminé
+  - Optimisation: Stylisation du calendrier
 # jj/mm/yy
   
