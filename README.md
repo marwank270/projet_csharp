@@ -67,5 +67,6 @@
 
 # 30/12/21:
   - Partie C: Faîtes et finie, j'ai finalement opté pour une calculatrice plutôt basique
+  - Optimisation: Élimination de variables et méthodes inutiles
 # jj/mm/yy
   

@@ -154,7 +154,8 @@ namespace Projet_Marwan_Kaouachi
 
                 case 3:
                     Console.Clear();
-                    MenuC();
+                    //MenuC();          // Je pensais faire plusieurs partie C mais j'avoue flemme et une seule est demandé
+                    Calculator();
                     break;
 
                 default:
@@ -441,54 +442,10 @@ namespace Projet_Marwan_Kaouachi
             }
 
         }
-        static void MenuC()
+        /*static void MenuC()
         {
             Calculator();
-            /*int? choixC;
-
-            Console.WriteLine($@"
-╔═══════════════════════════════════╗
-║  __  __                     ____  ║
-║ |  \/  | ___ _ __  _   _   / ___| ║
-║ | |\/| |/ _ \ '_ \| | | | | |     ║
-║ | |  | |  __/ | | | |_| | | |___  ║
-║ |_|  |_|\___|_| |_|\__,_|  \____| ║
-║                                   ║
-╠═══════════════════════════════════╩═══════════════════════╗
-║{cc.retourZero} ║
-╚═══════════════════════════════════════════════════════════╝");
-
-            Console.WriteLine("\n╔═══╦═══════╦═════════════════════════════════════════╗");
-            Console.WriteLine("║ 1 ║ Ncode ║ Menu d'encodage de chaîne de caractère  ║");
-            Console.WriteLine("╠═══╬═══════╬═════════════════════════════════════════╣");
-            Console.WriteLine("║ 2 ║ Dcode ║ Menu de décodage de chaîne de caractère ║");
-            Console.WriteLine("╚═══╩═══════╩═════════════════════════════════════════╝");
-
-            Console.WriteLine($"\n{cc.under}Choisissez un menu parmis ceux ci-dessus :{cc.end}");
-            choixC = DemandeNombre();
-
-            switch (choixC)
-            {
-                case 0:
-                    Console.Clear();
-                    Main();
-                    break;
-
-                case 1:
-                    Console.Clear();
-                    //Ncode();
-                    break;
-                case 2:
-                    Console.Clear();
-                    //Dcode();
-                    break;
-
-                default:
-                    Console.Clear();
-                    Console.WriteLine(cc.badVal);
-                    MenuB();
-                    break;*/
-        }
+        }*/
         #endregion Menus
 
         #region Partie_A
@@ -2016,36 +1973,6 @@ namespace Projet_Marwan_Kaouachi
         #endregion Partie_B
 
         #region Partie_C
-        #region ncodedcode
-        /*static void Ncode()
-        {
-            int? choixN;
-            Console.WriteLine($@"╔══════════════════════════════╗
-    ║  _   _               _       ║
-    ║ | \ | | ___ ___   __| | ___  ║
-    ║ |  \| |/ __/ _ \ / _` |/ _ \ ║
-    ║ | |\  | (_| (_) | (_| |  __/ ║
-    ║ |_| \_|\___\___/ \__,_|\___| ║
-    ║         ┌────────────────────┴──┐
-    ╚═════════┤ Encodage Binaire Hexa │             
-    ┌─────────┴───────────────────────┴────────────────────────┐
-    │{cc.retourZero}│
-    └──────────────────────────────────────────────────────────┘");
-
-            Console.WriteLine("╔═══╦══════════════════════╗");
-            Console.WriteLine("║ 1 ║ Algorithme de Gauss  ║");
-            Console.WriteLine("╠═══╬══════════════════════╣");
-            Console.WriteLine("║ 2 ║ Algorithme de Meeus  ║");
-            Console.WriteLine("╠═══╬══════════════════════╣");
-            Console.WriteLine("║ 3 ║ Algorithme de Conway ║");
-            Console.WriteLine("╚═══╩══════════════════════╝");
-        }
-        static void Dcode()
-        {
-
-        }*/
-        #endregion ncodedcode
-
         static void Calculator()
         {
             string saisie;
