@@ -69,21 +69,7 @@ namespace Projet_Marwan_Kaouachi
   / ___ \| |_) | |_) | | | (_| (_| | |_| | (_) | | | |  / __/| |_| / __/| | |_____|  / __/| |_| / __/ / __/ 
  /_/   \_\ .__/| .__/|_|_|\___\__,_|\__|_|\___/|_| |_| |_____|\___/_____|_|         |_____|\___/_____|_____|
          |_|   |_|                                                                                          
-                  by Marwan Kaouachi                                                                        ");*/
-            // @"" signifie que la string gardera la mise en forme d'origine
-
-
-
-            /*Console.WriteLine(@$"{cc.cyan}╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════╗{cc.end}   
-{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}      _                _ _           _   _               ____   ___ ____  _           ____   ___ ____  ____   {cc.end}{cc.cyan}║{cc.end}
-{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}     / \   _ __  _ __ | (_) ___ __ _| |_(_) ___  _ __   |___ \ / _ \___ \/ |         |___ \ / _ \___ \|___ \  {cc.end}{cc.cyan}║{cc.end}
-{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}    / _ \ | '_ \| '_ \| | |/ __/ _` | __| |/ _ \| '_ \    __) | | | |__) | |  _____    __) | | | |__) | __) | {cc.end}{cc.cyan}║{cc.end}
-{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}   / ___ \| |_) | |_) | | | (_| (_| | |_| | (_) | | | |  / __/| |_| / __/| | |_____|  / __/| |_| / __/ / __/  {cc.end}{cc.cyan}║{cc.end}
-{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}  /_/   \_\ .__/| .__/|_|_|\___\__,_|\__|_|\___/|_| |_| |_____|\___/_____|_|         |_____|\___/_____|_____| {cc.end}{cc.cyan}║{cc.end}
-{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}          |_|   |_|                                                                                           {cc.end}{cc.cyan}║{cc.end}
-{cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}                     {cc.end}{cc.cyan}┌────────────────────┐{cc.bgWhite}                                                                   {cc.end}{cc.cyan}║{cc.end}
-{cc.cyan}╚═════════════════════┤{cc.end}{cc.bgLightPurple} by Marwan Kaouachi {cc.end}{cc.cyan}├═══════════════════════════════════════════════════════════════════╝{cc.end} 
-                      {cc.cyan}└────────────────────┘ {cc.end}");*/
+                  by Marwan Kaouachi                                                                        ");*/                                       // v1 (pas de couleurs)
 
             Console.WriteLine(@$"{cc.cyan}╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════╗{cc.end}   
 {cc.cyan}║{cc.end}{cc.black}{cc.bgWhite}     _                _ _           _   _               ____   ___ ____  _           ____   ___ ____  ____   {cc.end}{cc.cyan}║{cc.end}
