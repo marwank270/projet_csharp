@@ -64,5 +64,8 @@
   - Finition de la Partie B:
     - Exercice 5 terminé
   - Optimisation: Stylisation du calendrier
+
+# 30/12/21:
+  - Partie C: Faîtes et finie, j'ai finalement opté pour une calculatrice plutôt basique
 # jj/mm/yy
   

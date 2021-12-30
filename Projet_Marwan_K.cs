@@ -136,9 +136,9 @@ namespace Projet_Marwan_Kaouachi
                         }
                         else if (wantsToQuit == "oui")
                             Console.WriteLine($"Au revoir {cc.cyan}:3{cc.end}");
-                            break;
+                        break;
                     } while (wantsToQuit != "oui" || wantsToQuit != "non"); // Vérification avant la sortie du programme
-                    
+
                     Environment.Exit(0); // Je termine le programme avec le code 0 qui signifie sans erreurs.
                     break;
 
@@ -335,7 +335,7 @@ namespace Projet_Marwan_Kaouachi
 
             Console.WriteLine($"\n{cc.under}Choisissez un exercice parmis ceux ci-dessus :{cc.end}");
             choixA = DemandeNombre();
-            
+
             switch (choixA)
             {
                 case 0:
@@ -443,7 +443,8 @@ namespace Projet_Marwan_Kaouachi
         }
         static void MenuC()
         {
-            int? choixC;
+            Calculator();
+            /*int? choixC;
 
             Console.WriteLine($@"
 ╔═══════════════════════════════════╗
@@ -475,19 +476,18 @@ namespace Projet_Marwan_Kaouachi
 
                 case 1:
                     Console.Clear();
-                    Ncode();
+                    //Ncode();
                     break;
                 case 2:
                     Console.Clear();
-                    Dcode();
+                    //Dcode();
                     break;
 
                 default:
                     Console.Clear();
                     Console.WriteLine(cc.badVal);
                     MenuB();
-                    break;
-            }
+                    break;*/
         }
         #endregion Menus
 
@@ -548,7 +548,7 @@ namespace Projet_Marwan_Kaouachi
 ");
             int mini;
             int maxi;
-      
+
             do
             {
                 Console.WriteLine("Saisissez une borne minimale pour débuter la liste des nombres Premiers : (0 pour quitter)");
@@ -570,9 +570,9 @@ namespace Projet_Marwan_Kaouachi
                 int cpt = 0;
 
                 for (int i = mini; i <= maxi; i++)
-                {   
+                {
                     bool prem = Premier(i); // Le programme vérifie tous les nombres entre mini et maxi, si ils sont Premier ils seront traité dans la suite de la boucle
-                        
+
                     if (prem == true)
                     {
                         liste += i.ToString(); // J'ajoute le nombre Premier dans la liste ici en convertissant sa valeur en string avant
@@ -583,11 +583,11 @@ namespace Projet_Marwan_Kaouachi
                             liste += " ; "; // Et je vérifie qu'il ne soit pas égal à la borne supérieur pour ajouter le ; dans le but de ne pas avoir un ; qui traine tout seul à la fin 
                         }
                     }
-                } 
-                
-                Console.WriteLine($"Entre {cc.cyan}{mini}{cc.end} et {cc.cyan}{maxi}{cc.end} il y a {cc.cyan}{cpt}{cc.end} nombres Premiers.\nEn voici la liste : {cc.cyan}{liste.TrimEnd(' ',';')}{cc.end}.\n"); // liste.TrimEnd() retire des caractères un à un en partant de la fin de la chaine (ici il retire "; " de ma chaine liste
+                }
+
+                Console.WriteLine($"Entre {cc.cyan}{mini}{cc.end} et {cc.cyan}{maxi}{cc.end} il y a {cc.cyan}{cpt}{cc.end} nombres Premiers.\nEn voici la liste : {cc.cyan}{liste.TrimEnd(' ', ';')}{cc.end}.\n"); // liste.TrimEnd() retire des caractères un à un en partant de la fin de la chaine (ici il retire "; " de ma chaine liste
             } while (mini != 0 || maxi != 0);
-            
+
             Retour();
             MenuA();
         }
@@ -652,9 +652,9 @@ namespace Projet_Marwan_Kaouachi
                 string ligne = "";
 
                 Console.WriteLine("Saisissez un nombre à décomposer en produit de facteurs premiers:");
-                
+
                 n = nombre = DemandeNombre();
-                
+
                 z = n != 0;
 
                 #region Essai_1
@@ -746,7 +746,7 @@ namespace Projet_Marwan_Kaouachi
                     } while (n != 1);
                     Console.WriteLine($"Après décomposition : {cc.cyan}{nombre}{cc.end} = {cc.cyan}{ligne}{cc.end}");
                 }
-                
+
             } while (z != false);
 
             Retour();
@@ -844,7 +844,7 @@ namespace Projet_Marwan_Kaouachi
                             liste += i.ToString() + " ; ";
                         }
                     }
-                    
+
                 }
                 liste = liste.Substring(0, liste.Length - 3);
                 return liste;
@@ -992,7 +992,7 @@ namespace Projet_Marwan_Kaouachi
                 }
 
 
-                for (int j = 1; j != largeur + 1;  j++)
+                for (int j = 1; j != largeur + 1; j++)
                 {
                     Console.WriteLine(ligne);
                 }
@@ -1003,14 +1003,14 @@ namespace Projet_Marwan_Kaouachi
                 string start = "";
                 string space = "";
                 string ligne = "";
-                
+
                 for (int i = 1; i != longueur + 1; i++)
                 {
                     start += carac.ToString() + " ";
                 }
                 for (int i = 1; i != longueur - 1; i++)
                 {
-                    space += "  "; 
+                    space += "  ";
                 }
                 ligne += carac.ToString() + space + " " + carac.ToString();
 
@@ -1114,7 +1114,7 @@ namespace Projet_Marwan_Kaouachi
                 Console.WriteLine("Saisissez la date dont vous voulez connaître le lendemain : (Sous la forme jj mm aaa ou bien jj/mm/aaaa)");
 
                 saisie = Console.ReadLine();
-                datum = saisie.Split(' ' , '/');                                                          // Je met dans un tableau tous les éléments qui sont séparé par un espace dans la string saisie
+                datum = saisie.Split(' ', '/');                                                          // Je met dans un tableau tous les éléments qui sont séparé par un espace dans la string saisie
 
                 try
                 {
@@ -1305,7 +1305,7 @@ namespace Projet_Marwan_Kaouachi
                     Console.WriteLine("Vous n'avez pas mis les dates dans le bon ordre mais pas de soucis je gère ca, j'ai remis les années dans le bons sens.");
                 } else if (mois > mois2 && annee >= annee2)
                 {
-                    n = annee;                                                                      
+                    n = annee;
                     annee = annee2;
                     annee2 = n;
 
@@ -1351,7 +1351,7 @@ namespace Projet_Marwan_Kaouachi
                         jour = 1;
                         mois++;
                     }
-                    else if (jour == 31 && mois == 4 || jour == 31 && mois == 6 || jour == 31 &&  mois == 9 || jour == 31 && mois == 12)   // Cas des mois à 30 jours // Erreur idiote j'ai oublié les "|| jour == 31 &&"
+                    else if (jour == 31 && mois == 4 || jour == 31 && mois == 6 || jour == 31 && mois == 9 || jour == 31 && mois == 12)   // Cas des mois à 30 jours // Erreur idiote j'ai oublié les "|| jour == 31 &&"
                     {
                         jour = 1;
                         mois++;
@@ -1392,7 +1392,7 @@ namespace Projet_Marwan_Kaouachi
                 {
                     newlap = true;
                 }
-                
+
 
             } while (newlap != false);
 
@@ -1541,27 +1541,27 @@ namespace Projet_Marwan_Kaouachi
 
                     int a = annee % 19;         // Écris à l'aide des explications disponible sur Wikipédia : https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques_selon_la_m%C3%A9thode_de_Gauss
                     int b = annee % 4;          // À l'identique parce que je me perdrais si je changeais les variables.                                
-                    int c = annee % 7;                                      
-                    int k = annee / 100;                                    
-                    int p = (13 + 8 * k) / 25;                              
-                    int q = k / 4;                                          
-                    int M = (15 - p + k - q) % 30;                          
-                    int N = (4 + k - q) % 7;                                      
-                    int d = (19 * a + M) % 30;                                  
-                    int e = (2 * b + 4 * c + 6 * d + N) % 7;            
-                    int H = 22 + d + e;                                 
-                    int Q = H - 31;                                     
+                    int c = annee % 7;
+                    int k = annee / 100;
+                    int p = (13 + 8 * k) / 25;
+                    int q = k / 4;
+                    int M = (15 - p + k - q) % 30;
+                    int N = (4 + k - q) % 7;
+                    int d = (19 * a + M) % 30;
+                    int e = (2 * b + 4 * c + 6 * d + N) % 7;
+                    int H = 22 + d + e;
+                    int Q = H - 31;
                     int R = (11 * M + 11) % 30;
 
-                    if (d == 29 && e == 9)                                                          
-                        Q = 19;                                                                     
-                    if (d == 28 && e == 6 && R < 19)                                           
-                        Q = 18;                                                                                     
-                    if (H < 32)                                                                                 
-                        Console.WriteLine($"En {cc.cyan}{annee}{cc.end} la date de Pâques est le {cc.cyan}dimanche {H} mars{cc.end}.");                 
-                    if (H > 32)                                                        
-                        Console.WriteLine($"En {cc.cyan}{annee}{cc.end} la date de Pâques est le {cc.cyan}dimanche {Q} avril{cc.end}.");                                         
-                                            
+                    if (d == 29 && e == 9)
+                        Q = 19;
+                    if (d == 28 && e == 6 && R < 19)
+                        Q = 18;
+                    if (H < 32)
+                        Console.WriteLine($"En {cc.cyan}{annee}{cc.end} la date de Pâques est le {cc.cyan}dimanche {H} mars{cc.end}.");
+                    if (H > 32)
+                        Console.WriteLine($"En {cc.cyan}{annee}{cc.end} la date de Pâques est le {cc.cyan}dimanche {Q} avril{cc.end}.");
+
                 } while (quit != true);
             }
             static void AlgoMeeus()
@@ -1674,7 +1674,7 @@ namespace Projet_Marwan_Kaouachi
                     } while (year < 1583);
 
                     int annee = Convert.ToInt32(year);
-                    
+
                     int n = annee % 19;            // Écris à l'aide des explications disponible sur Wikipédia : https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques_selon_la_m%C3%A9thode_de_Meeus
                     int c = annee / 100;
                     int u = annee % 100;
@@ -1786,7 +1786,7 @@ namespace Projet_Marwan_Kaouachi
                 } while (quit != true);
                 Retour();
                 BEX4();
-                
+
             }
             #endregion Algorithme_pâques
         }
@@ -1804,7 +1804,7 @@ namespace Projet_Marwan_Kaouachi
 │{cc.retourZero} │
 └───────────────────────────────────────────────────────────┘
 ");
-            
+
             string saisie;
             uint year, day_week;
             int annee, jour_sem;
@@ -1816,7 +1816,7 @@ namespace Projet_Marwan_Kaouachi
                 string sem = $"{cc.under}Lu{cc.end}  {cc.under}Ma{cc.end}  {cc.under}Me{cc.end}  {cc.under}Je{cc.end}  {cc.under}Ve{cc.end}  {cc.under}Sa{cc.end}  {cc.under}Di{cc.end}";
 
                 Console.WriteLine($"{cc.under}Saisissez l'année dont vous voulez voir le calendrier :{cc.end}");
-                
+
                 #region Saisie_année
                 do
                 {
@@ -1828,7 +1828,7 @@ namespace Projet_Marwan_Kaouachi
                     {
                         Console.Clear();
                         Console.WriteLine($"{cc.badVal} Veillez à ce que l'année sois {cc.red}entière et positive{cc.end}.");
-                        BEX5();               
+                        BEX5();
                     }
                     //annee = Convert.ToInt32(year);                            // Variable non déclaré dans la boucles
                     annee = Convert.ToInt32(saisie);                            // Conversion réussie dans le try donc je l'assigne ici
@@ -1875,8 +1875,8 @@ namespace Projet_Marwan_Kaouachi
                 int origHaut = Console.WindowHeight;
                 int larg = origLarg - 90; // 120 => 30
                 int haut = origHaut + 98;  // 32 => 130
-                
-                Console.SetBufferSize(larg, haut);                            // Je voulais changer la taille de lma fenêtre mais c'est plus compliqué que prévu quand le programme est déjà en cours
+
+                Console.SetBufferSize(larg, haut);                              // Je voulais changer la taille de lma fenêtre mais c'est plus compliqué que prévu quand le programme est déjà en cours
                 Console.SetWindowSize(larg, haut);*/
 
                 Console.Clear();
@@ -1892,12 +1892,12 @@ namespace Projet_Marwan_Kaouachi
 
                 bool bis = Bissextile(annee);
                 int num_mois = 0, num_carac = 0, num_jour = 1;
-                string[] titre_mois = {" Janvier  ", " Février  ", "   Mars   ", "  Avril   ", "   Mai    ", "   Juin   ", " Juillet  ", "   Août   ", "Septembre ", " Novembre ", " Décembre "};
+                string[] titre_mois = { " Janvier  ", " Février  ", "   Mars   ", "  Avril   ", "   Mai    ", "   Juin   ", " Juillet  ", "   Août   ", "Septembre ", " Novembre ", " Décembre " };
 
                 for (int i = 1; i != 12; i++)
                 {
-                    Console.WriteLine($"\n\n\t╔═════════┤{cc.cyan}{titre_mois[num_mois]}{cc.end}├═════════╗");   
-                                                                                // Cette ligne me sers a définir la ligne ou sera affiché le titre et va m'être utile pour moduler mon affichage
+                    Console.WriteLine($"\n\n\t╔═════════┤{cc.cyan}{titre_mois[num_mois]}{cc.end}├═════════╗");
+                    // Cette ligne me sers a définir la ligne ou sera affiché le titre et va m'être utile pour moduler mon affichage
                     Console.WriteLine($"{cote}{sem}  ║");                       // Affichage de la ligne de des jours de la semaine
 
                     if (num_mois == 0 || num_mois == 2 || num_mois == 4 || num_mois == 6 || num_mois == 7 || num_mois == 9 || num_mois == 11)     // Mois de 31 jours (-1 a chaques mois car le tableau commence à 0 
@@ -1918,7 +1918,7 @@ namespace Projet_Marwan_Kaouachi
                     // Affiche les points avant le début du mois dans la semaine concerné
                     if (jour_sem == 8)                                          // Si le 31 est un dimanche pas besoin de points puisque le 1 sera un lundi
                     {
-                        
+
                     } else
                     {
                         for (int j = 1; j != jour_sem; j++)
@@ -1991,12 +1991,12 @@ namespace Projet_Marwan_Kaouachi
                                             Console.Write(" .  ");
                                         }
                                         break;
-                                    /*case 7:
-                                        for (int k = 7; k <= 6; k++)
-                                        {
-                                            Console.Write(" .  ");
-                                        }
-                                        break;*/
+                                        /*case 7:
+                                            for (int k = 7; k <= 6; k++)
+                                            {
+                                                Console.Write(" .  ");
+                                            }
+                                            break;*/
                                 }
                                 Console.Write($"║\n\t{aftermonth}");
                             }
@@ -2016,20 +2016,21 @@ namespace Projet_Marwan_Kaouachi
         #endregion Partie_B
 
         #region Partie_C
-        static void Ncode()
+        #region ncodedcode
+        /*static void Ncode()
         {
             int? choixN;
             Console.WriteLine($@"╔══════════════════════════════╗
-║  _   _               _       ║
-║ | \ | | ___ ___   __| | ___  ║
-║ |  \| |/ __/ _ \ / _` |/ _ \ ║
-║ | |\  | (_| (_) | (_| |  __/ ║
-║ |_| \_|\___\___/ \__,_|\___| ║
-║         ┌────────────────────┴──┐
-╚═════════┤ Encodage Binaire Hexa │             
-┌─────────┴───────────────────────┴────────────────────────┐
-│{cc.retourZero}│
-└──────────────────────────────────────────────────────────┘");
+    ║  _   _               _       ║
+    ║ | \ | | ___ ___   __| | ___  ║
+    ║ |  \| |/ __/ _ \ / _` |/ _ \ ║
+    ║ | |\  | (_| (_) | (_| |  __/ ║
+    ║ |_| \_|\___\___/ \__,_|\___| ║
+    ║         ┌────────────────────┴──┐
+    ╚═════════┤ Encodage Binaire Hexa │             
+    ┌─────────┴───────────────────────┴────────────────────────┐
+    │{cc.retourZero}│
+    └──────────────────────────────────────────────────────────┘");
 
             Console.WriteLine("╔═══╦══════════════════════╗");
             Console.WriteLine("║ 1 ║ Algorithme de Gauss  ║");
@@ -2042,11 +2043,139 @@ namespace Projet_Marwan_Kaouachi
         static void Dcode()
         {
 
-        }
-        static void ASCII()
-        {
+        }*/
+        #endregion ncodedcode
 
+        static void Calculator()
+        {
+            string saisie;
+            string[] calcul;
+            int quit;
+
+            Console.WriteLine($@"{cc.red}╔═════════════════════════════════════════════════╗{cc.end}                     ╔═════════════════════════╗{cc.end}
+{cc.red}║{cc.end}   ____      _            _       _              {cc.red}║{cc.end}                     ║ ┌─────────────────────┐ ║{cc.end}
+{cc.red}║{cc.end}  / ___|__ _| | ___ _   _| | __ _| |_ ___  _ __  {cc.red}║{cc.end}                     ║ │             -8 * 24 │ ║
+{cc.red}║{cc.end} | |   / _` | |/ __| | | | |/ _` | __/ _ \| '__| {cc.red}║{cc.end}                     ║ │ =              -192 │ ║
+{cc.red}║{cc.end} | |__| (_| | | (__| |_| | | (_| | || (_) | |    {cc.red}║{cc.end}                     ║ └─────────────────────┘ ║
+{cc.red}║{cc.end}  \____\__,_|_|\___|\__,_|_|\__,_|\__\___/|_|    {cc.red}║{cc.end}                     ║ ┌─────┬─────┬─────┬───┐ ║
+{cc.red}╠═════════════════════════════════════════════════╩───────┐{cc.end}             ║ │  7  │  8  │  9  │ @ │ ║
+{cc.red}│{cc.end} (Utilisez {cc.cyan}00{cc.end} pour quitter et revenir au menu principal) {cc.red}│{cc.end}             ║ ├─────┼─────┼─────┼───┤ ║ 
+{cc.red}└─────────────────────────────────────────────────────────┘{cc.end}           * ║ │  4  │  5  │  6  │ * │ ║  °
+                                                                   * °  ▓░▒─────▒─────▒─────▒───▒░▓  *  *
+                                                                    *   ▓░▒░░▒░░▒░░▒░░▒░░▒░░▒░▒░▒░▓ °  * *");
+            do
+            {
+
+                Console.WriteLine($"{cc.under}Saisissez ci dessous votre calcul :{cc.end} (sous la forme a +|-|*|/ b)");
+                saisie = Console.ReadLine();
+
+                try
+                {
+                    quit = Convert.ToInt32(saisie);                                         // Je vérifie dans ce try catch si l'utilisateur veut quitter ou non
+                    if (quit == 00 || saisie  == "00")
+                    {
+                        Retour();
+                        Main();
+                        break;
+                    } 
+
+                } catch
+                {
+                    if (saisie == "00")
+                    {
+                        Retour();
+                        Main();
+                        break;
+                    }
+                }
+
+                calcul = saisie.Split(' ');
+                //taille = calcul.Length;
+
+                int operateur = Operateur(ref saisie, new char[] { '+', '-', '*', '/' });   // Je défini les opérateurs autrisés par mon module
+
+                if (operateur != -1)
+                    Calculator(ref saisie, ref operateur);
+                else
+                    Console.WriteLine($"{cc.warnFlag} Attention il faut rentrer trois termes comme ceci : a +|-|*|/ b");
+
+                static int Operateur(ref string saisie, char[] O)                               // Ce module servira à trouver les opérateurs dans la chaîne de caractères
+                {
+                    int i = 0;
+
+                    foreach (char carac in saisie)                                              // Pour chaque caractère dans ma string saisie je vais chercher mes opérateurs
+                    {
+                        int j = carac.ToString().IndexOfAny(O);                                 // O représente la recherche de { '+', '-', '*', '/' }
+
+                        if (j == 0 && i > 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            i++;
+                        }
+                    }
+                    return i;
+                }
+
+                static void Calculator(ref string saisie, ref int oeprateur)
+                {
+                    float resultat = 0f;
+                    string[] cal = new string[3];
+
+                    cal[0] = saisie.Substring(0, oeprateur);
+                    cal[1] = saisie[oeprateur].ToString();
+                    cal[2] = saisie.Substring(oeprateur + 1);
+
+                    float nombre1;
+                    if (float.TryParse(cal[0], out nombre1) == false)                       // Je tente la conversion avec TryParse qui renvoie true ou false
+                    {
+                        Console.WriteLine($"{cc.warnFlag} Attention le premier membre doit être {cc.red}uniquement{cc.end} en nombre entier !");
+                        return;                                                             // Je return directement pour éviter au programe de crash
+                    }
+
+                    float nombre2;
+                    if (float.TryParse(cal[2], out nombre2) == false)
+                    {
+                        Console.WriteLine($"{cc.warnFlag} Attention le second membre doit être {cc.red}uniquement{cc.end} en nombre entier !");
+                        return;
+                    }
+
+                    switch (cal[1])
+                    {
+                        case "+":
+                            resultat = nombre1 + nombre2;
+                            break;
+
+                        case "-":
+                            resultat = nombre1 - nombre2;
+                            break;
+
+                        case "*":
+                            resultat = nombre1 * nombre2;
+                            break;
+
+                        case "/":
+                            if (nombre2 == 0)                                               // On prévoit les cas impossible
+                            {
+                                Console.WriteLine($"{nombre1} / {nombre2} = Impossible de diviser par 0 !");
+                                Retour();
+                                MenuC();
+                            }
+                            else
+                                resultat = nombre1 / nombre2;
+                            break;
+                    }
+
+                    Console.WriteLine($"{nombre1} {cal[1]} {nombre2} = {cc.cyan}{resultat}{cc.end}\n");
+                }
+
+            } while (saisie != "00");
+            
+            
         }
         #endregion Partie_C
+    
     }
 }
